@@ -1,2 +1,4 @@
 <!--pages/home/index.wxml-->
-<text>pages/home/index.wxml</text>
+<authorization>
+  <text>pages/home/index.wxml</text>
+</authorization>

@@ -1,0 +1,9 @@
+<!--components/authorization/index.wxml-->
+<slot wx:if="{{login}}"></slot>
+<view wx:else class="unauthorized-container">
+  <view class="unauthorized-hint-container">
+    <icon type="info" size="32" />
+    <text class="hint">暂未登录</text>
+  </view>
+  <button type="primary" bindtap="login">微信登录</button>
+</view>

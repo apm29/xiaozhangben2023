@@ -16,10 +16,6 @@ Page({
    */
   onLoad(options) {
     getAccountBookDetail()
-    post("accountBook","create",{ name:"测试",desc:"sssss" })
-    .then(res=>{
-      console.log(res);
-    })
   },
 
   /**

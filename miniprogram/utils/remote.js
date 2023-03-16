@@ -32,7 +32,7 @@ function post(
         title: res.result.msg || "失败",
       })
     }
-    return res;
+    return res.result;
   }).catch(err => {
     if (options.showError) {
       wx.showToast({
