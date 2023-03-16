@@ -25,6 +25,9 @@ Component({
 
   attached: function () {
     const that = this
+    that.setData({
+      login: !!getApp().globalData.openid
+    })
     getApp().setWatcher(getApp().globalData, {
       openid: function (openid) {
         that.setData({
