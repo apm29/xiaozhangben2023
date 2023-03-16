@@ -1,2 +1,5 @@
 <!--pages/charts/index.wxml-->
-<text class="text-red-500 bg-yellow-600">pages/charts/index.wxml</text>
+<authorization>
+  <text class="text-red-500 bg-yellow-600">pages/charts/index.wxml</text>
+  <view class="text-red-500 bg-yellow-600">123</view>
+</authorization>

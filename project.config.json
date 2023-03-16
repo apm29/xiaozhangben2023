@@ -37,7 +37,7 @@
     "showES6CompileOption": false
   },
   "appid": "wxb980afecbaa5b6d2",
-  "projectname": "%E6%88%91%E7%9A%84%E8%AE%B0%E8%B4%A6%E7%8C%BF",
+  "projectname": "我的记账猿",
   "libVersion": "2.30.2",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {

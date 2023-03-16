@@ -1,5 +1,8 @@
 {
   "entryPagePath": "pages/home/index",
+  "usingComponents": {
+    "authorization":"../components/authorization/index"
+  },
   "pages": [
     "pages/index/index",
     "pages/getOpenId/index",
@@ -27,20 +30,22 @@
       },
       {
         "pagePath": "pages/charts/index",
-        "text": "云开发",
+        "text": "图表",
         "iconPath": "images/icons/funds-box-line.png",
         "selectedIconPath": "images/icons/funds-box-line-selected.png"
       }
     ],
     "selectedColor": "#1296db",
-    "color": "#cdcdcd"
+    "color": "#cdcdcd",
+    "borderStyle": "white",
+    "custom": false
   },
   "window": {
     "backgroundColor": "#F6F6F6",
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
-    "navigationBarTextStyle": "black"
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#1296db",
+    "navigationBarTitleText": "我的记账猿",
+    "navigationBarTextStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
