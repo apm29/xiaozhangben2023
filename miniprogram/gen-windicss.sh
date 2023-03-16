@@ -1,0 +1,1 @@
+windicss '**.wxml' -o windi.wxss

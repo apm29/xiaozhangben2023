@@ -1,2 +1,2 @@
 <!--pages/charts/index.wxml-->
-<text>pages/charts/index.wxml</text>
+<text class="text-red-500 bg-yellow-600">pages/charts/index.wxml</text>
