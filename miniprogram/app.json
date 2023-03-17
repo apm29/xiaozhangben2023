@@ -4,7 +4,8 @@
   "usingComponents": {
     "authorization": "../components/authorization/index",
     "svg-icon": "../components/svg-icon/index",
-    "add-record": "../components/add-record/index"
+    "add-record": "../components/add-record/index",
+    "safe-input": "../components/safe-input/index"
   },
   "pages": [
     "pages/home/index",

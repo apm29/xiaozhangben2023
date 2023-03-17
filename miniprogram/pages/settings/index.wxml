@@ -1,2 +1,2 @@
 <!--pages/settings/index.wxml-->
-<text>pages/settings/index.wxml</text>
+<text class="bg-green-500 bg-opacity-100">pages/settings/index.wxml</text>

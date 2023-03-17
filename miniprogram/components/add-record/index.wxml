@@ -21,13 +21,14 @@
       </view>
       <view class="flex-grow"></view>
       <picker mode="date" value="{{addFormModel.date}}" bindchange="handleDateSelected">
-        <view class="picker" class="rounded px-4 py-2 text-xs flex flex-nowrap items-center bg-gray-400 bg-opacity-30">
+        <view class="picker" class="rounded px-4 py-2 font-bold text-xs flex flex-nowrap items-center bg-gray-400 bg-opacity-30">
           {{addFormModel.formattedDate}}
           <svg-icon name="mdi:menu-down" size="1em" color="#9d9d9d"></svg-icon>
         </view>
       </picker>
     </view>
     <!-- 金额 -->
+    <safe-input></safe-input>
     <!-- 分类 -->
     <!-- 备注 -->
   </view>

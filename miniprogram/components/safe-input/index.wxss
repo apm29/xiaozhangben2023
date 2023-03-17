@@ -1,0 +1,35 @@
+@import "../../windi.wxss";
+
+
+.content{
+  display: flex;
+  font-size: 80rpx;
+  line-height: 90rpx;
+  font-weight: 700;
+}
+
+.cursor-insert{
+  position: absolute;
+  top: 0rpx;
+  right: -1rpx;
+}
+.cursor{ 
+  width: 2rpx;
+  height: 80rpx;
+  background: #666;
+  border-radius: 6rpx;
+  animation: twinkling 0.9s infinite ; 
+} 
+@keyframes twinkling{ 
+  0%{ 
+    background: #fff;
+  } 
+  100%{ 
+    background: #666;
+  } 
+} 
+.default-content{
+  color: #999;
+  font-size: 38rpx;
+  font-weight: 600;
+}
