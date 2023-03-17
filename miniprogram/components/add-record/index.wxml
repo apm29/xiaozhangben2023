@@ -1,0 +1,34 @@
+<!--components/add/index.wxml-->
+<view bindtap="handleAddRecord" class="flex items-center justify-center shadow-xl rounded-full border-2 border-gray-400 fixed bottom-8 right-6 text-blue-400 px-4 py-3 gap-x-2 filter drop-shadow-xl bg-white" hover-class="bg-gray-300">
+  <svg-icon name="line-md:edit-twotone-full" color="#1296db" size="1.25em"></svg-icon>
+  <text>记一笔</text>
+</view>
+
+<!-- 记账dialog -->
+<page-container show="{{showAddModal}}">
+
+  <view class="flex flex-col px-4 py-5 bg-white">
+    <!-- 标题 -->
+    <view class="flex flex-nowrap">
+      <text>记一笔</text>
+      <view class="flex-grow"></view>
+      <svg-icon bindtap="handleClose" name="mdi:close" color="#adadad" size="1.5em"></svg-icon>
+    </view>
+    <!-- 类型 日期 -->
+    <view class="flex flex-nowrap  gap-x-4 py-3">
+      <view bindtap="handleSelectType" data-item="{{item}}" wx:key="d" wx:for="{{types}}" style="background-color: {{addFormModel.type === item.id?item.bgcolor:'rgba(200,200,200,0.6)'}}; color: {{addFormModel.type === item.id?item.color:'gray'}}" class="filter rounded px-4 py-2 text-xs">
+        {{ item.name }}
+      </view>
+      <view class="flex-grow"></view>
+      <picker mode="date" value="{{addFormModel.date}}" bindchange="handleDateSelected">
+        <view class="picker" class="rounded px-4 py-2 text-xs flex flex-nowrap items-center bg-gray-400 bg-opacity-30">
+          {{addFormModel.formattedDate}}
+          <svg-icon name="mdi:menu-down" size="1em" color="#9d9d9d"></svg-icon>
+        </view>
+      </picker>
+    </view>
+    <!-- 金额 -->
+    <!-- 分类 -->
+    <!-- 备注 -->
+  </view>
+</page-container>

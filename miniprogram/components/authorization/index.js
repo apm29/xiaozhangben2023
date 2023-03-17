@@ -1,3 +1,5 @@
+const { watch } = require("../../utils/watch")
+
 // components/authorization/index.js
 Component({
   /**
@@ -24,13 +26,13 @@ Component({
   },
 
   attached: function () {
-    const that = this
-    that.setData({
+    
+    this.setData({
       login: !!getApp().globalData.openid
     })
-    getApp().setWatcher(getApp().globalData, {
-      openid: function (openid) {
-        that.setData({
+    watch(getApp().globalData, {
+      openid:  (openid)=> {
+        this.setData({
           login: !!openid
         })
       }

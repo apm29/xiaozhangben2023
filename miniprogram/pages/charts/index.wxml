@@ -2,4 +2,5 @@
 <authorization>
   <text class="text-red-500 bg-yellow-600">pages/charts/index.wxml</text>
   <view class="text-red-500 bg-yellow-600">123</view>
+  <svg-icon name="mdi:plus" size="2em" color="#333333"></svg-icon>
 </authorization>

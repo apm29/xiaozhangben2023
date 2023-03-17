@@ -1,0 +1,14 @@
+{
+  "name": "xiaozhangben2023",
+  "version": "0.0.1",
+  "description": "Account book miniprogram",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "apm29",
+  "license": "ISC",
+  "dependencies": {
+    "dayjs": "^1.11.7"
+  }
+}

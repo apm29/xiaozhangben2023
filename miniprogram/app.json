@@ -1,24 +1,15 @@
 {
   "entryPagePath": "pages/home/index",
+  "darkmode": false,
   "usingComponents": {
-    "authorization":"../components/authorization/index"
+    "authorization": "../components/authorization/index",
+    "svg-icon": "../components/svg-icon/index",
+    "add-record": "../components/add-record/index"
   },
   "pages": [
-    "pages/index/index",
-    "pages/getOpenId/index",
-    "pages/getMiniProgramCode/index",
-    "pages/deployService/index",
-    "pages/createCollection/index",
-    "pages/uploadFile/index",
-    "pages/selectRecord/index",
-    "pages/updateRecord/index",
-    "pages/updateRecordResult/index",
-    "pages/updateRecordSuccess/index",
-    "pages/sumRecord/index",
-    "pages/sumRecordResult/index",
-
     "pages/home/index",
-    "pages/charts/index"
+    "pages/charts/index",
+    "pages/settings/index"
   ],
   "tabBar": {
     "list": [
@@ -33,6 +24,12 @@
         "text": "图表",
         "iconPath": "images/icons/funds-box-line.png",
         "selectedIconPath": "images/icons/funds-box-line-selected.png"
+      },
+      {
+        "pagePath": "pages/settings/index",
+        "text": "设置",
+        "iconPath": "images/icons/settings.png",
+        "selectedIconPath": "images/icons/settings-selected.png"
       }
     ],
     "selectedColor": "#1296db",

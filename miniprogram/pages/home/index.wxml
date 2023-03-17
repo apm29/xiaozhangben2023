@@ -1,4 +1,9 @@
 <!--pages/home/index.wxml-->
 <authorization>
-  <text>pages/home/index.wxml</text>
+  <text>
+    pages/home/index.wxml
+
+    {{ userInfo.openid }}
+  </text>
+  <add-record></add-record>
 </authorization>
