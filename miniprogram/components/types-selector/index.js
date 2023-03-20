@@ -1,5 +1,6 @@
 // components/types-selector/index.js
 Component({
+  externalClasses: ['selector-wrapper'],
   /**
    * 组件的属性列表
    */
@@ -9,6 +10,15 @@ Component({
     },
     value:{
       type: Number
+    },
+    height:{
+      type: Number
+    },
+    color: {
+      type: String
+    },
+    bgColor: {
+      type: String
     }
   },
 
@@ -24,7 +34,11 @@ Component({
    */
   methods: {
     handleSelectType: function(e){
-      console.log(e);
+      const item = e.currentTarget.dataset.item;
+      this.triggerEvent("input", item.id);
+      this.setData({
+        value: item.id
+      })
     }
   }
 })

@@ -33,3 +33,10 @@ sh ./miniprogram/gen-windicss.sh
 
 ## 通用方法
 - `App.setWatcher`: 监听函数,接收一个需要监听的对象和监听者对象(类似Vue中的watch对象)
+
+
+## store
+- https://www.npmjs.com/package/wxministore#nonWritable
+
+## computed
+- https://developers.weixin.qq.com/community/develop/article/doc/000a4442bd44c84e740d6b6b051413

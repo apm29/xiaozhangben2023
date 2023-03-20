@@ -6,6 +6,8 @@ const store = new Store({
     userInfo:{
 
     },
+    accountBooks:[],
+    selectedBook: null
   }
 })
 

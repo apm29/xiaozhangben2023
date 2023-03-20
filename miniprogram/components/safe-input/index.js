@@ -46,8 +46,13 @@ Component({
     },
 
     handleConfirm(e){
-      console.log("btn confirm pressed");
-      this.triggerEvent("confirm",this.data.content.join())
+      if(!this.data.content || !this.data.content.length){
+        return wx.showToast({
+          title: "请输入金额",
+          icon: "error"
+        })
+      }
+      this.triggerEvent("confirm",this.data.content.join(""))
     },
 
     keyTap(e) {
@@ -99,6 +104,10 @@ Component({
       this.setData({
         content: content.split('')
       }) // 转为数组
+      this.triggerEvent("input",this.data.content.join(""))
+      this.setData({
+        value: this.data.content.join("")
+      })
     },
   }
 })

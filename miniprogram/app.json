@@ -6,7 +6,7 @@
     "svg-icon": "../components/svg-icon/index",
     "add-record": "../components/add-record/index",
     "safe-input": "../components/safe-input/index",
-    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog"
+    "types-selector": "../components/types-selector/index"
   },
   "pages": [
     "pages/home/index",

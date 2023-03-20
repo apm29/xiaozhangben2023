@@ -5,22 +5,22 @@
 </view>
 
 <!-- 记账dialog -->
-<page-container show="{{showAddModal}}">
+<page-container show="{{showAddModal}}" round="{{true}}">
 
   <view class="flex flex-col px-4 py-2 bg-white">
     <!-- 标题 -->
     <view class="flex flex-nowrap">
-      <text>记一笔</text>
+      <text class="font-bold">记一笔</text>
       <view class="flex-grow"></view>
       <svg-icon bindtap="handleClose" name="mdi:close" color="#adadad" size="1.5em"></svg-icon>
     </view>
     <!-- 类型 日期 -->
     <view class="flex flex-wrap  gap-x-3 gap-y-1 py-3">
-      <view bindtap="handleSelectType" data-item="{{item}}" wx:key="d" wx:for="{{types}}" style="background-color: {{addFormModel.type === item.id?item.bgcolor:'rgba(200,200,200,0.6)'}}; color: {{addFormModel.type === item.id?item.color:'gray'}}" class="filter rounded px-4 py-2 text-xs">
+      <view bindtap="handleSelectType" data-item="{{item}}" wx:key="id" wx:for="{{types}}" style="background-color: {{type === item.id?item.bgcolor:'rgba(200,200,200,0.6)'}}; color: {{type === item.id?item.color:'gray'}}" class="filter rounded px-4 py-2 text-xs">
         {{ item.name }}
       </view>
       <view class="flex-grow"></view>
-      <picker mode="date" value="{{addFormModel.date}}" bindchange="handleDateSelected">
+      <picker mode="date" value="{{date}}" bindchange="handleDateSelected">
         <view class="picker" class="rounded px-4 py-2 font-bold text-xs flex flex-nowrap items-center bg-gray-400 bg-opacity-30">
           {{formattedDate}}
           <svg-icon name="mdi:menu-down" size="1em" color="#9d9d9d"></svg-icon>
@@ -28,8 +28,14 @@
       </picker>
     </view>
     <!-- 金额 -->
-    <safe-input color="{{ btnEnterColor }}" bgColor="{{ btnEnterBgColor}}">
+    <safe-input bind:confirm="handleAddDetail" model:value="{{ amount }}" color="{{ btnEnterColor }}" bgColor="{{ btnEnterBgColor}}">
       <!-- 分类 -->
+      <types-selector
+        types="{{ subTypes }}"
+        model:value="{{ sub_type }}"
+        height="{{ 200 }}"
+        color="{{ btnEnterColor }}" bgColor="{{ btnEnterBgColor}}"
+      ></types-selector>
       <!-- 备注 -->
     </safe-input>
    

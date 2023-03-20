@@ -1,2 +1,2 @@
 /* components/add/index.wxss */
-@import "../../windi.wxss"
+@import "../../windi.wxss";
