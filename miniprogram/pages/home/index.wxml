@@ -1,5 +1,8 @@
 <!--pages/home/index.wxml-->
 <authorization>
+  <view class="primary-bg-color px-2 py-2">
+    <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
+  </view>
   <text>
     pages/home/index.wxml
 

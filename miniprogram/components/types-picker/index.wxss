@@ -1,1 +1,17 @@
+@import "../../windi.wxss";
 /* components/types-picker/index.wxss */
+
+.type-btn{
+  color: rgba(45, 45, 45, 0.9);
+  background-color: rgba(222, 222, 222, 0.4);
+  border-radius: 4rpx;
+  display: inline-block !important;
+  text-align: center;
+  padding-top: 16rpx;
+  padding-bottom: 16rpx;
+}
+
+.active {
+  color: white;
+  background-color: rgba(66,185,75,1);
+}

@@ -1,6 +1,5 @@
-const { getAccountBookDetail } = require("../../biz/detail")
 const { post } = require("../../utils/remote")
-const { watch } = require("../../utils/watch")
+
 
 // pages/home/index.js
 Page({
@@ -9,14 +8,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:{}
+    typeId: null,
+    subTypeId: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    getAccountBookDetail()
    
   },
 
@@ -76,5 +75,9 @@ Page({
     post("detail","create",e.detail,{
       showSuccess: true
     })
+  },
+
+  handleTypeChange(e){
+   
   }
 })

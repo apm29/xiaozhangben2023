@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "add-record": "../../components/add-record/index"
+    "add-record": "../../components/add-record/index",
+    "types-picker": "../../components/types-picker/index"
   }
 }
