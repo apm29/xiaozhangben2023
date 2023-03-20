@@ -3,10 +3,7 @@
   "darkmode": false,
   "usingComponents": {
     "authorization": "../components/authorization/index",
-    "svg-icon": "../components/svg-icon/index",
-    "add-record": "../components/add-record/index",
-    "safe-input": "../components/safe-input/index",
-    "types-selector": "../components/types-selector/index"
+    "svg-icon": "../components/svg-icon/index"
   },
   "pages": [
     "pages/home/index",

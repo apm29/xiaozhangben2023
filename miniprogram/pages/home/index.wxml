@@ -5,5 +5,5 @@
 
     {{ $state.userInfo.openid }}
   </text>
-  <add-record></add-record>
+  <add-record bind:add="handleAddDetail"></add-record>
 </authorization>

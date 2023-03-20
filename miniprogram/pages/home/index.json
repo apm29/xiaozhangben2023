@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "add-record": "../../components/add-record/index"
+  }
 }

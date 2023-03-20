@@ -69,5 +69,12 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  handleAddDetail(e){
+    console.log(e);
+    post("detail","create",e.detail,{
+      showSuccess: true
+    })
   }
 })

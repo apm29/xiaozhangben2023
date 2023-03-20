@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "safe-input": "../safe-input/index",
+    "types-selector": "../types-selector/index"
+  }
 }

@@ -37,6 +37,11 @@
         color="{{ btnEnterColor }}" bgColor="{{ btnEnterBgColor}}"
       ></types-selector>
       <!-- 备注 -->
+      
+      <view class="flex flex-nowrap items-center justify-center">
+        <text class="title-remark">备注:</text>
+        <input type="text" 	placeholder-class="placeholder-remark" confirm-type="done" class="input-remark my-3 text-gray-500" model:value="{{ remark }}" placeholder="添加备注"/>
+      </view>
     </safe-input>
    
   </view>

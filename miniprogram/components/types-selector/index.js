@@ -15,10 +15,10 @@ Component({
       type: Number
     },
     color: {
-      type: String
+      type: String,
     },
     bgColor: {
-      type: String
+      type: String,
     }
   },
 
