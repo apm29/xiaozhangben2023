@@ -1,6 +1,6 @@
 <!--components/types-picker/index.wxml-->
-<view bindtap="handleShowModal" class="inline-flex text-sm items-center justify-center text-white text-opacity-80 px-2 py-1 border border-opacity-50 rounded border-solid border-white backdrop-filter backdrop-blur-sm bg-white bg-opacity-30">
-  {{ selectedTypeName }} | <svg-icon class="inline-block" name="tabler:category" color="rgba(255,255,255,0.8)"></svg-icon>
+<view bindtap="handleShowModal" class="inline-flex text-sm items-center justify-center text-white text-opacity-80 px-2 py-1 border border-opacity-50 rounded border-solid border-white backdrop-filter backdrop-blur-sm bg-white bg-opacity-30 gap-2">
+  {{ selectedTypeName }} <text>|</text> <svg-icon class="inline-block" name="tabler:category" color="rgba(255,255,255,0.8)"></svg-icon>
 </view>
 
 <mp-half-screen-dialog show="{{showDialog}}" title="请选择类型">

@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "add-record": "../../components/add-record/index",
-    "types-picker": "../../components/types-picker/index"
+    "types-picker": "../../components/types-picker/index",
+    "month-picker": "../../components/month-picker/index"
   }
 }

@@ -1,3 +1,4 @@
+const dayjs = require("dayjs");
 const { post } = require("../../utils/remote")
 
 
@@ -9,7 +10,8 @@ Page({
    */
   data: {
     typeId: null,
-    subTypeId: null
+    subTypeId: null,
+    month: dayjs().format("YYYY-MM")
   },
 
   /**

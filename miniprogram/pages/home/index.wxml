@@ -1,7 +1,10 @@
 <!--pages/home/index.wxml-->
 <authorization>
   <view class="primary-bg-color px-2 py-2">
+    <!-- 类型选择 -->
     <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
+    <!-- 月份选择 -->
+    <month-picker model:month="{{ month }}"></month-picker>
   </view>
   <text>
     pages/home/index.wxml
