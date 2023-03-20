@@ -6,6 +6,12 @@ Component({
   properties: {
     value: {
       type: String
+    },
+    color: {
+      type: String
+    },
+    bgColor: {
+      type: String
     }
   },
 
@@ -15,7 +21,7 @@ Component({
   data: {
     content: [],
     cursorIndex: '', // 插入光标位置
-    contentLengthMax: 16
+    contentLengthMax: 12
   },
 
   attached: function () {
@@ -39,7 +45,8 @@ Component({
       })
     },
 
-    handleConfirm(){
+    handleConfirm(e){
+      console.log("btn confirm pressed");
       this.triggerEvent("confirm",this.data.content.join())
     },
 

@@ -3,7 +3,7 @@
   <text>
     pages/home/index.wxml
 
-    {{ userInfo.openid }}
+    {{ $state.userInfo.openid }}
   </text>
   <add-record></add-record>
 </authorization>

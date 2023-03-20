@@ -1,6 +1,6 @@
 // components/svg-icon/index.js
 // svg-icon
-import { getIconifySVG, getLocalSVG } from '../../utils/svgIcon'
+import { getIconifySVG, getLocalSVG } from '../../utils/svg-icon'
 Component({
   /**
    * 组件的属性列表

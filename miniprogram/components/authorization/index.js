@@ -1,5 +1,6 @@
 const { watch } = require("../../utils/watch")
 
+const app = getApp()
 // components/authorization/index.js
 Component({
   /**
@@ -13,7 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    login: false
+
   },
 
   /**

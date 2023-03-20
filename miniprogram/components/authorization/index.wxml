@@ -1,5 +1,5 @@
 <!--components/authorization/index.wxml-->
-<slot wx:if="{{login}}"></slot>
+<slot wx:if="{{$state.login}}"></slot>
 <view wx:else class="unauthorized-container">
   <view class="unauthorized-hint-container">
     <icon type="info" size="32" />

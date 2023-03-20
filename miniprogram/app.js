@@ -1,6 +1,7 @@
 const { checkUpdate } = require("./utils/update");
 const { initWxCloud, post } = require("./utils/remote")
-import { iconifySetup } from './utils/svgIcon'
+const  { iconifySetup } = require('./utils/svg-icon')
+const { store } = require("./store/app")
 
 //初始化图标服务
 iconifySetup("https://icon.jiayupearl.shop")
@@ -20,6 +21,12 @@ App({
   getUserInfo: function () {
     post("user").then(res=>{
       this.globalData.openid = res.data.openid;
+      this.store.setState({
+        login: Boolean(res.data.openid),
+        userInfo:{
+          openid: res.data.openid
+        }
+      })
     })
   },
 
@@ -27,6 +34,6 @@ App({
     openid: null
   },
 
-  
+  store: store,
 });
 

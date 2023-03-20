@@ -3,20 +3,20 @@
 
 .content{
   display: flex;
-  font-size: 80rpx;
-  line-height: 90rpx;
+  font-size: 60rpx;
+  line-height: 75rpx;
   font-weight: 700;
 }
 
 .cursor-insert{
   position: absolute;
   top: 0rpx;
-  right: -1rpx;
+  right: 1rpx;
 }
 .cursor{ 
-  width: 2rpx;
-  height: 80rpx;
-  background: #666;
+  width: 5rpx;
+  height: 75rpx;
+  background: #888;
   border-radius: 6rpx;
   animation: twinkling 0.9s infinite ; 
 } 
@@ -32,4 +32,10 @@
   color: #999;
   font-size: 38rpx;
   font-weight: 600;
+}
+
+
+.enter-btn-pressed {
+  background-color: rgba(5, 150, 105, 0.5) !important;
+  color: white  !important;
 }

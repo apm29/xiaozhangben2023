@@ -1,8 +1,10 @@
 const types = require("../../dict/types")
 const { post } = require("../../utils/remote")
 const dayjs = require("dayjs")
+const computedBehavior = require("miniprogram-computed").behavior;
 // components/add/index.js
 Component({
+  behaviors: [computedBehavior],
   /**
    * 组件的属性列表
    */
@@ -20,12 +22,19 @@ Component({
       type: 1,
       date: dayjs().format("YYYY-MM-DD"),
       sub_type: 1,
-      remark: null,
-      formattedDate: dayjs().format("M月D日")
+      remark: null
     },
     accountBooks:[],
     selectedBook: null,
-    types: types
+    types: types,
+    btnEnterColor: types[0].color,
+    btnEnterBgColor: types[0].bgcolor
+  },
+
+  computed:{
+    formattedDate(data){
+      return dayjs(data.addFormModel.date).format("M月D日")
+    }
   },
 
 
@@ -53,14 +62,14 @@ Component({
     },
     handleSelectType(e){
       this.setData({
-        "addFormModel.type": e.currentTarget.dataset.item.id
-
+        "addFormModel.type": e.currentTarget.dataset.item.id,
+        btnEnterColor: e.currentTarget.dataset.item.color,
+        btnEnterBgColor: e.currentTarget.dataset.item.bgcolor
       })
     },
     handleDateSelected(e){
       this.setData({
-        "addFormModel.date": dayjs(e.detail.value).format("YYYY-MM-DD"),
-        "addFormModel.formattedDate": dayjs(e.detail.value).format("M月D日")
+        "addFormModel.date": dayjs(e.detail.value).format("YYYY-MM-DD")
       })
     }
   }

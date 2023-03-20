@@ -1,19 +1,22 @@
 <!--components/safe-input/index.wxml-->
-<view class="flex flex-nowrap border-b border-gray-500 py-5">
-  <text class="text-3xl font-bold text-dark-900">¥</text>
+<scroll-view scroll-x="{{true}}">
+  <view class="flex flex-nowrap border-b border-gray-500 py-3 px-1">
+    <text class="text-2xl font-bold text-dark-500">¥</text>
 
-  <view class="content" wx:if="{{content.length}}">
-    <view wx:for="{{content}}" wx:key="index" data-str-index="{{index + 1}}">
-      <view class="number-block">{{item}}<view class="cursor cursor-insert" wx:if="{{cursorIndex === index + 1}}"></view>
+    <view class="content" wx:if="{{content.length}}">
+      <view wx:for="{{content}}" wx:key="index" data-str-index="{{index + 1}}">
+        <view class="number-block">{{item}}<view class="cursor cursor-insert" wx:if="{{cursorIndex === index + 1}}"></view>
+        </view>
       </view>
     </view>
-  </view>
-  <view class="cursor" wx:if="{{!cursorIndex}}"></view>
-  <text class="default-content" wx:if="{{!content.length}}">{{defaultContent}}</text>
+    <view class="cursor" wx:if="{{!cursorIndex}}"></view>
+    <text class="default-content" wx:if="{{!content.length}}">{{defaultContent}}</text>
 
-</view>
+  </view>
+</scroll-view>
 <view style="height: 1rpx;" class="bg-gray-300 bg-opacity-40 w-full "></view>
-<view class="grid grid-cols-4 grid-rows-4 gap-2 p-2 text-center bg-gray-300 bg-opacity-10 text-dark-800 text-3xl font-bold">
+<slot></slot>
+<view class="grid grid-cols-4 grid-rows-4 gap-1 p-2 text-center bg-gray-300 bg-opacity-10 text-dark-800 text-2xl font-bold">
   <view catchtap="keyTap" data-keys="1" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">1</view>
   <view catchtap="keyTap" data-keys="2" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">2</view>
   <view catchtap="keyTap" data-keys="3" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">3</view>
@@ -24,7 +27,7 @@
   <view catchtap="keyTap" data-keys="5" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">5</view>
   <view catchtap="keyTap" data-keys="6" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">6</view>
 
-  <view catchtap="handleConfirm" hover-class="bg-green-600" class="{{ content.length?'bg-green-500':'bg-green-200' }} row-span-3 border rounded flex justify-center text-white items-center">确定</view>
+  <view catchtap="handleConfirm" style="color: {{ color }}; background-color: {{ bgColor }};" hover-class="bg-green-600 enter-btn-pressed" class="{{ content.length?'bg-green-500':'bg-green-200' }} row-span-3 border rounded flex justify-center text-white items-center">确定</view>
 
   <view catchtap="keyTap" data-keys="7" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">7</view>
   <view catchtap="keyTap" data-keys="8" hover-class="bg-gray-200" class="bg-white border rounded min-h-2em flex justify-center items-center">8</view>

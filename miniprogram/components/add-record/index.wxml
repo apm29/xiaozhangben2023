@@ -7,7 +7,7 @@
 <!-- 记账dialog -->
 <page-container show="{{showAddModal}}">
 
-  <view class="flex flex-col px-4 py-5 bg-white">
+  <view class="flex flex-col px-4 py-2 bg-white">
     <!-- 标题 -->
     <view class="flex flex-nowrap">
       <text>记一笔</text>
@@ -15,21 +15,23 @@
       <svg-icon bindtap="handleClose" name="mdi:close" color="#adadad" size="1.5em"></svg-icon>
     </view>
     <!-- 类型 日期 -->
-    <view class="flex flex-nowrap  gap-x-4 py-3">
+    <view class="flex flex-wrap  gap-x-3 gap-y-1 py-3">
       <view bindtap="handleSelectType" data-item="{{item}}" wx:key="d" wx:for="{{types}}" style="background-color: {{addFormModel.type === item.id?item.bgcolor:'rgba(200,200,200,0.6)'}}; color: {{addFormModel.type === item.id?item.color:'gray'}}" class="filter rounded px-4 py-2 text-xs">
         {{ item.name }}
       </view>
       <view class="flex-grow"></view>
       <picker mode="date" value="{{addFormModel.date}}" bindchange="handleDateSelected">
         <view class="picker" class="rounded px-4 py-2 font-bold text-xs flex flex-nowrap items-center bg-gray-400 bg-opacity-30">
-          {{addFormModel.formattedDate}}
+          {{formattedDate}}
           <svg-icon name="mdi:menu-down" size="1em" color="#9d9d9d"></svg-icon>
         </view>
       </picker>
     </view>
     <!-- 金额 -->
-    <safe-input></safe-input>
-    <!-- 分类 -->
-    <!-- 备注 -->
+    <safe-input color="{{ btnEnterColor }}" bgColor="{{ btnEnterBgColor}}">
+      <!-- 分类 -->
+      <!-- 备注 -->
+    </safe-input>
+   
   </view>
 </page-container>
