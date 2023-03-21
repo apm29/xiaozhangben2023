@@ -1,7 +1,10 @@
 // components/svg-icon/index.js
 // svg-icon
-import { getIconifySVG, getLocalSVG } from '../../utils/svg-icon'
+const { getIconifySVG, getLocalSVG } = require('../../utils/svg-icon');
+const computedBehavior = require("miniprogram-computed").behavior;
+
 Component({
+  behaviors:[computedBehavior],
   /**
    * 组件的属性列表
    */
@@ -26,6 +29,12 @@ Component({
     width: '1em',
     height: '1em',
     iconUrl: '',
+  },
+
+  watch:{
+    name: function(name){
+      this.getDataUri(name, this.data.color)
+    }
   },
 
   lifetimes: {

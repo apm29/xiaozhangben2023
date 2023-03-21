@@ -3,7 +3,9 @@ const { initWxCloud, post } = require("./utils/remote")
 const  { iconifySetup } = require('./utils/svg-icon')
 const { store } = require("./store/app")
 const { eventBus } = require("./utils/event-bus")
-
+// const dayjs = require('dayjs')
+// const LocalizedFormat = require('dayjs/plugin/localizedFormat.js')
+// dayjs.extend(LocalizedFormat)
 //初始化图标服务
 iconifySetup("https://icon.jiayupearl.shop")
 

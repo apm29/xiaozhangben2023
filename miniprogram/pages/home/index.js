@@ -12,24 +12,18 @@ Page({
     typeId: null,
     subTypeId: null,
     month: dayjs().format("YYYY-MM"),
-    detailRawList :[]
+    detailRawList :[],
   },
 
   computed:{
-    dayGroupedDetail(data){
-      const old = data.detailRawList;
-    }
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    post("detail","query",{}).then(res=>{
-      this.setData({
-        detailRawList: res.data
-      })
-    })
+   this.getDetail()
   },
 
   /**
@@ -81,14 +75,55 @@ Page({
 
   },
 
+  async getDetail(){
+    const res = await post("detail", "query", {});
+
+    const old = res.data.map(it=>{
+      return {
+        ...it,
+        hour_minute: dayjs(it.created_time).format("HH:mm"),
+        date: dayjs(it.created_time).format("YYYY-MM-DD"),
+        month: dayjs(it.created_time).format("YYYY-MM"),
+        year: dayjs(it.created_time).format("YYYY"),
+      }
+    });
+      const map = old.reduce((res,current)=>{
+        const dateArr = res[current.date]
+        if(dateArr){
+          dateArr.push(current)
+        } else {
+          res[current.date] = [current]
+        }
+        return res;
+      },{})
+      console.log(map);
+      const arr = Object.keys(map).map(key=>{
+        return {
+          date: key,
+          month_date: dayjs(key).format("M月D日"),
+          week_day: dayjs(key).locale("zh-cn").format("dddd"),
+          items: map[key],
+        }
+      })
+      arr.sort((a,b)=>{
+        return dayjs(a).isBefore(dayjs(b))
+      })
+    this.setData({
+      detailRawList: arr
+    });
+  },
+
   handleAddDetail(e){
     console.log(e);
     post("detail","create",e.detail,{
       showSuccess: true
+    }).then(res=>{
+      this.getDetail()
     })
   },
 
+
   handleTypeChange(e){
    
-  }
+  },
 })

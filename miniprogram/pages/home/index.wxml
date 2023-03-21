@@ -1,6 +1,6 @@
 <!--pages/home/index.wxml-->
 <authorization>
-  <view class="flex flex-col bg-gray-200 h-full">
+  <view class="flex flex-col bg-gray-50 h-full">
     <view class="primary-bg-color px-2 py-2" style="height: 155rpx;">
       <!-- 类型选择 -->
       <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
@@ -8,15 +8,30 @@
       <month-picker model:month="{{ month }}"></month-picker>
     </view>
     <scroll-view scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
-      <text wx:for="{{ detailRawList}}" wx:key="_id">
-        {{ item.amount }}
-      </text>
-      <text wx:for="{{ detailRawList}}" wx:key="_id">
-        {{ item.amount }}
-      </text>
-      <text wx:for="{{ detailRawList}}" wx:key="_id">
-        {{ item.amount }}
-      </text>
+      <view wx:for="{{ detailRawList }}" class="mx-2" wx:key="date">
+        <view class="bg-gray-200 text-sm rounded-t font-bold mt-2 px-4 py-2">
+          {{ item.month_date }} {{ item.week_day }}
+        </view>
+        <view wx:for="{{ item.items }}" wx:key="_id" class="flex gap-4 items-center bg-white rounded shadow px-3 py-2">
+          <view class="w-8 h-8 rounded-full primary-bg-color flex items-center justify-center">
+            <svg-icon name="{{item.sub_type_item.icon}}" color="#ffffff" size="1.5em"></svg-icon>
+          </view>
+          <view class="flex-grow">
+            <view class="flex text-sm">
+              {{ item.sub_type_item.name }}
+              <view class="flex-grow"></view>
+              <view class="text-lg">
+                {{ item.type === 1 ? '-': item.type === 2 ? '+' : '' }}
+                {{ item.amount }}
+              </view>
+            </view>
+            <view class="text-xs text-gray-400">
+              {{ item.hour_minute }}  {{ item.remark || '' }}
+            </view>
+          </view>
+        </view>
+      </view>
+      <view style="height: 1000rpx;"></view>
     </scroll-view>
 
     <add-record bind:add="handleAddDetail"></add-record>

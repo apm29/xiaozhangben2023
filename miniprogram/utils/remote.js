@@ -28,6 +28,7 @@ function post(
       })
     }
     if (options.showError && !res.result.success) {
+      console.error(res.result);
       wx.showToast({
         title: res.result.msg || "失败",
         icon: "error"
@@ -35,6 +36,7 @@ function post(
     }
     return res.result;
   }).catch(err => {
+    console.error(err);
     if (options.showError) {
       wx.showToast({
         title: err,
