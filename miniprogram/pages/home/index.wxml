@@ -1,15 +1,18 @@
 <!--pages/home/index.wxml-->
 <authorization>
-  <view class="primary-bg-color px-2 py-2">
-    <!-- 类型选择 -->
-    <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
-    <!-- 月份选择 -->
-    <month-picker model:month="{{ month }}"></month-picker>
-  </view>
-  <text>
-    pages/home/index.wxml
+  <view class="flex flex-col bg-gray-200 h-full">
+    <view class="primary-bg-color px-2 py-2" style="height: 155rpx;">
+      <!-- 类型选择 -->
+      <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
+      <!-- 月份选择 -->
+      <month-picker model:month="{{ month }}"></month-picker>
+    </view>
+    <scroll-view scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
+      <text wx:for="{{ details}}">
+        {{ item.amount }}
+      </text>
+    </scroll-view>
 
-    {{ $state.userInfo.openid }}
-  </text>
-  <add-record bind:add="handleAddDetail"></add-record>
+    <add-record bind:add="handleAddDetail"></add-record>
+  </view>
 </authorization>

@@ -30,6 +30,7 @@ function post(
     if (options.showError && !res.result.success) {
       wx.showToast({
         title: res.result.msg || "失败",
+        icon: "error"
       })
     }
     return res.result;
@@ -37,6 +38,7 @@ function post(
     if (options.showError) {
       wx.showToast({
         title: err,
+        icon: "error"
       })
     }
     throw err;

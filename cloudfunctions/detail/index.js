@@ -1,6 +1,7 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 const create = require("./create")
+const query = require("./query")
 
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
@@ -12,5 +13,7 @@ exports.main = async (event, context) => {
   switch (event.topic) {
     case 'create':
       return await create.main(event, context);
+    case 'query':
+      return await query.main(event, context);
   }
 }

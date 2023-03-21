@@ -132,6 +132,9 @@
 .font-bold {
   font-weight: 700;
 }
+.h-full {
+  height: 100%;
+}
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;

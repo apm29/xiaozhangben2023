@@ -18,6 +18,12 @@ exports.main = async (event, context) => {
         msg: `金额不可为空`
       };
     }
+    if(!event.payload.account_book_id){
+      return {
+        success: false,
+        msg: `账本未选择`
+      };
+    }
     if(!event.payload.type || !event.payload.sub_type){
       return {
         success: false,

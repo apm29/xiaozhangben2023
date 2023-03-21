@@ -118,6 +118,7 @@ Component({
         date: this.data.date,
         sub_type: this.data.sub_type,
         remark: this.data.remark,
+        account_book_id: getApp().store.getState().selectedBook._id
       })
     },
 

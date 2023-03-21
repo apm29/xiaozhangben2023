@@ -2,7 +2,7 @@
 @import "../../windi.wxss";
 
 .input-remark{
-  background-color: rgba(188,188,188,0.3);
+  background-color: rgba(188,188,188,0.1);
   padding: 12rpx 18rpx;
   border-radius: 12rpx;
   flex-grow: 1;
