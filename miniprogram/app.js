@@ -20,12 +20,14 @@ App({
   },
 
   getUserInfo: function () {
-    post("user").then(res=>{
+    post("user","query").then(res=>{
       this.globalData.openid = res.data.openid;
       this.store.setState({
         login: Boolean(res.data.openid),
         userInfo:{
-          openid: res.data.openid
+          openid: res.data.openid,
+          avatar_url: res.data.avatar_url,
+          nickname: res.data.nickname
         }
       })
       eventBus.publish("userInfo")

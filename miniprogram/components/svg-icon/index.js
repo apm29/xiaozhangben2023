@@ -26,7 +26,6 @@ Component({
     width: '1em',
     height: '1em',
     iconUrl: '',
-    class: '',
   },
 
   lifetimes: {
@@ -50,13 +49,11 @@ Component({
       if (url) {
         this.setData({
           iconUrl: url,
-          class: color ? 'icon' : 'default-icon',
         })
       } else {
         getIconifySVG(name).then(res => {
           that.setData({
             iconUrl: res,
-            class: color ? 'icon' : 'default-icon',
           })
         }).catch(e => {
           console.log(e)

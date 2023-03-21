@@ -15,7 +15,6 @@ Component({
 
   computed:{
     formattedMonth(data){
-      console.log(data);
       return dayjs(data.month).format("YYYY年M月")
     }
   },

@@ -1,2 +1,12 @@
-<!--pages/settings/index.wxml-->
-<text class="bg-green-500 bg-opacity-100">pages/settings/index.wxml</text>
+<view data-weui-theme="{{theme}}">
+  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar border border-gray-300 border-solid rounded-full" src="{{$state.userInfo.avatar_url}}"></image>
+  </button>
+  <mp-form>
+    <mp-cells>
+      <mp-cell title="昵称">
+        <input bindconfirm="onChangeNickname" value="{{$state.userInfo.nickname}}" type="nickname" class="weui-input" placeholder="请输入昵称" />
+      </mp-cell>
+    </mp-cells>
+  </mp-form>
+</view>

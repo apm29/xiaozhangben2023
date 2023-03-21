@@ -8,7 +8,13 @@
       <month-picker model:month="{{ month }}"></month-picker>
     </view>
     <scroll-view scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
-      <text wx:for="{{ details}}">
+      <text wx:for="{{ detailRawList}}" wx:key="_id">
+        {{ item.amount }}
+      </text>
+      <text wx:for="{{ detailRawList}}" wx:key="_id">
+        {{ item.amount }}
+      </text>
+      <text wx:for="{{ detailRawList}}" wx:key="_id">
         {{ item.amount }}
       </text>
     </scroll-view>

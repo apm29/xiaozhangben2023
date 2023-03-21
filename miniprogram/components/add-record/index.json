@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "safe-input": "../safe-input/index",
-    "types-selector": "../types-selector/index"
+    "types-selector": "../types-selector/index",
+    "mp-half-screen-dialog": "weui-miniprogram/half-screen-dialog/half-screen-dialog"
   }
 }

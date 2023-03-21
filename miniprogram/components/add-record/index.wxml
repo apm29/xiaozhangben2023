@@ -5,17 +5,17 @@
 </view>
 
 <!-- 记账dialog -->
-<page-container show="{{showAddModal}}" round="{{true}}">
+<mp-half-screen-dialog ext-class="min-h-90vh" title="记一笔" show="{{showAddModal}}" round="{{true}}">
 
-  <view class="flex flex-col px-4 py-2 bg-white">
+  <view slot="desc" class="flex flex-col bg-white min-h-90vh">
     <!-- 标题 -->
-    <view class="flex flex-nowrap">
+    <!-- <view class="flex flex-nowrap">
       <text class="font-bold">记一笔</text>
       <view class="flex-grow"></view>
       <svg-icon bindtap="handleClose" name="mdi:close" color="#adadad" size="1.5em"></svg-icon>
-    </view>
+    </view> -->
     <!-- 类型 日期 -->
-    <view class="flex flex-wrap  gap-x-3 gap-y-1 py-3">
+    <view class="flex flex-wrap  gap-x-1 gap-y-1 py-1">
       <view bindtap="handleSelectType" data-item="{{item}}" wx:key="id" wx:for="{{types}}" style="background-color: {{type === item.id?item.bgcolor:'rgba(200,200,200,0.6)'}}; color: {{type === item.id?item.color:'gray'}}" class="filter rounded px-4 py-2 text-xs">
         {{ item.name }}
       </view>
@@ -45,4 +45,4 @@
     </safe-input>
    
   </view>
-</page-container>
+</mp-half-screen-dialog>
