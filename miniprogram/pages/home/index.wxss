@@ -1,1 +1,11 @@
 /* pages/home/index.wxss */
+
+.border-bottom{
+  border-style: solid;
+  border-width: 0 0 2rpx 0;
+  border-color: rgba(200, 200, 200, 0.3);
+}
+.rounded-bottom{
+  border-bottom-right-radius: 12rpx;
+  border-bottom-left-radius: 12rpx;
+}

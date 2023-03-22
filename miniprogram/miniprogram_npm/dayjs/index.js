@@ -1,13 +1,441 @@
-module.exports = (function() {
-var __MODS__ = {};
-var __DEFINE__ = function(modId, func, req) { var m = { exports: {}, _tempexports: {} }; __MODS__[modId] = { status: 0, func: func, req: req, m: m }; };
-var __REQUIRE__ = function(modId, source) { if(!__MODS__[modId]) return require(source); if(!__MODS__[modId].status) { var m = __MODS__[modId].m; m._exports = m._tempexports; var desp = Object.getOwnPropertyDescriptor(m, "exports"); if (desp && desp.configurable) Object.defineProperty(m, "exports", { set: function (val) { if(typeof val === "object" && val !== m._exports) { m._exports.__proto__ = val.__proto__; Object.keys(val).forEach(function (k) { m._exports[k] = val[k]; }); } m._tempexports = val }, get: function () { return m._tempexports; } }); __MODS__[modId].status = 1; __MODS__[modId].func(__MODS__[modId].req, m, m.exports); } return __MODS__[modId].m.exports; };
-var __REQUIRE_WILDCARD__ = function(obj) { if(obj && obj.__esModule) { return obj; } else { var newObj = {}; if(obj != null) { for(var k in obj) { if (Object.prototype.hasOwnProperty.call(obj, k)) newObj[k] = obj[k]; } } newObj.default = obj; return newObj; } };
-var __REQUIRE_DEFAULT__ = function(obj) { return obj && obj.__esModule ? obj.default : obj; };
-__DEFINE__(1679288587885, function(require, module, exports) {
-!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):(t="undefined"!=typeof globalThis?globalThis:t||self).dayjs=e()}(this,(function(){var t=1e3,e=6e4,n=36e5,r="millisecond",i="second",s="minute",u="hour",a="day",o="week",f="month",h="quarter",c="year",d="date",l="Invalid Date",$=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,y=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,M={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_"),ordinal:function(t){var e=["th","st","nd","rd"],n=t%100;return"["+t+(e[(n-20)%10]||e[n]||e[0])+"]"}},m=function(t,e,n){var r=String(t);return!r||r.length>=e?t:""+Array(e+1-r.length).join(n)+t},v={s:m,z:function(t){var e=-t.utcOffset(),n=Math.abs(e),r=Math.floor(n/60),i=n%60;return(e<=0?"+":"-")+m(r,2,"0")+":"+m(i,2,"0")},m:function t(e,n){if(e.date()<n.date())return-t(n,e);var r=12*(n.year()-e.year())+(n.month()-e.month()),i=e.clone().add(r,f),s=n-i<0,u=e.clone().add(r+(s?-1:1),f);return+(-(r+(n-i)/(s?i-u:u-i))||0)},a:function(t){return t<0?Math.ceil(t)||0:Math.floor(t)},p:function(t){return{M:f,y:c,w:o,d:a,D:d,h:u,m:s,s:i,ms:r,Q:h}[t]||String(t||"").toLowerCase().replace(/s$/,"")},u:function(t){return void 0===t}},g="en",D={};D[g]=M;var p=function(t){return t instanceof _},S=function t(e,n,r){var i;if(!e)return g;if("string"==typeof e){var s=e.toLowerCase();D[s]&&(i=s),n&&(D[s]=n,i=s);var u=e.split("-");if(!i&&u.length>1)return t(u[0])}else{var a=e.name;D[a]=e,i=a}return!r&&i&&(g=i),i||!r&&g},w=function(t,e){if(p(t))return t.clone();var n="object"==typeof e?e:{};return n.date=t,n.args=arguments,new _(n)},O=v;O.l=S,O.i=p,O.w=function(t,e){return w(t,{locale:e.$L,utc:e.$u,x:e.$x,$offset:e.$offset})};var _=function(){function M(t){this.$L=S(t.locale,null,!0),this.parse(t)}var m=M.prototype;return m.parse=function(t){this.$d=function(t){var e=t.date,n=t.utc;if(null===e)return new Date(NaN);if(O.u(e))return new Date;if(e instanceof Date)return new Date(e);if("string"==typeof e&&!/Z$/i.test(e)){var r=e.match($);if(r){var i=r[2]-1||0,s=(r[7]||"0").substring(0,3);return n?new Date(Date.UTC(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)):new Date(r[1],i,r[3]||1,r[4]||0,r[5]||0,r[6]||0,s)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},m.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},m.$utils=function(){return O},m.isValid=function(){return!(this.$d.toString()===l)},m.isSame=function(t,e){var n=w(t);return this.startOf(e)<=n&&n<=this.endOf(e)},m.isAfter=function(t,e){return w(t)<this.startOf(e)},m.isBefore=function(t,e){return this.endOf(e)<w(t)},m.$g=function(t,e,n){return O.u(t)?this[e]:this.set(n,t)},m.unix=function(){return Math.floor(this.valueOf()/1e3)},m.valueOf=function(){return this.$d.getTime()},m.startOf=function(t,e){var n=this,r=!!O.u(e)||e,h=O.p(t),l=function(t,e){var i=O.w(n.$u?Date.UTC(n.$y,e,t):new Date(n.$y,e,t),n);return r?i:i.endOf(a)},$=function(t,e){return O.w(n.toDate()[t].apply(n.toDate("s"),(r?[0,0,0,0]:[23,59,59,999]).slice(e)),n)},y=this.$W,M=this.$M,m=this.$D,v="set"+(this.$u?"UTC":"");switch(h){case c:return r?l(1,0):l(31,11);case f:return r?l(1,M):l(0,M+1);case o:var g=this.$locale().weekStart||0,D=(y<g?y+7:y)-g;return l(r?m-D:m+(6-D),M);case a:case d:return $(v+"Hours",0);case u:return $(v+"Minutes",1);case s:return $(v+"Seconds",2);case i:return $(v+"Milliseconds",3);default:return this.clone()}},m.endOf=function(t){return this.startOf(t,!1)},m.$set=function(t,e){var n,o=O.p(t),h="set"+(this.$u?"UTC":""),l=(n={},n[a]=h+"Date",n[d]=h+"Date",n[f]=h+"Month",n[c]=h+"FullYear",n[u]=h+"Hours",n[s]=h+"Minutes",n[i]=h+"Seconds",n[r]=h+"Milliseconds",n)[o],$=o===a?this.$D+(e-this.$W):e;if(o===f||o===c){var y=this.clone().set(d,1);y.$d[l]($),y.init(),this.$d=y.set(d,Math.min(this.$D,y.daysInMonth())).$d}else l&&this.$d[l]($);return this.init(),this},m.set=function(t,e){return this.clone().$set(t,e)},m.get=function(t){return this[O.p(t)]()},m.add=function(r,h){var d,l=this;r=Number(r);var $=O.p(h),y=function(t){var e=w(l);return O.w(e.date(e.date()+Math.round(t*r)),l)};if($===f)return this.set(f,this.$M+r);if($===c)return this.set(c,this.$y+r);if($===a)return y(1);if($===o)return y(7);var M=(d={},d[s]=e,d[u]=n,d[i]=t,d)[$]||1,m=this.$d.getTime()+r*M;return O.w(m,this)},m.subtract=function(t,e){return this.add(-1*t,e)},m.format=function(t){var e=this,n=this.$locale();if(!this.isValid())return n.invalidDate||l;var r=t||"YYYY-MM-DDTHH:mm:ssZ",i=O.z(this),s=this.$H,u=this.$m,a=this.$M,o=n.weekdays,f=n.months,h=function(t,n,i,s){return t&&(t[n]||t(e,r))||i[n].slice(0,s)},c=function(t){return O.s(s%12||12,t,"0")},d=n.meridiem||function(t,e,n){var r=t<12?"AM":"PM";return n?r.toLowerCase():r},$={YY:String(this.$y).slice(-2),YYYY:this.$y,M:a+1,MM:O.s(a+1,2,"0"),MMM:h(n.monthsShort,a,f,3),MMMM:h(f,a),D:this.$D,DD:O.s(this.$D,2,"0"),d:String(this.$W),dd:h(n.weekdaysMin,this.$W,o,2),ddd:h(n.weekdaysShort,this.$W,o,3),dddd:o[this.$W],H:String(s),HH:O.s(s,2,"0"),h:c(1),hh:c(2),a:d(s,u,!0),A:d(s,u,!1),m:String(u),mm:O.s(u,2,"0"),s:String(this.$s),ss:O.s(this.$s,2,"0"),SSS:O.s(this.$ms,3,"0"),Z:i};return r.replace(y,(function(t,e){return e||$[t]||i.replace(":","")}))},m.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},m.diff=function(r,d,l){var $,y=O.p(d),M=w(r),m=(M.utcOffset()-this.utcOffset())*e,v=this-M,g=O.m(this,M);return g=($={},$[c]=g/12,$[f]=g,$[h]=g/3,$[o]=(v-m)/6048e5,$[a]=(v-m)/864e5,$[u]=v/n,$[s]=v/e,$[i]=v/t,$)[y]||v,l?g:O.a(g)},m.daysInMonth=function(){return this.endOf(f).$D},m.$locale=function(){return D[this.$L]},m.locale=function(t,e){if(!t)return this.$L;var n=this.clone(),r=S(t,e,!0);return r&&(n.$L=r),n},m.clone=function(){return O.w(this.$d,this)},m.toDate=function(){return new Date(this.valueOf())},m.toJSON=function(){return this.isValid()?this.toISOString():null},m.toISOString=function(){return this.$d.toISOString()},m.toString=function(){return this.$d.toUTCString()},M}(),T=_.prototype;return w.prototype=T,[["$ms",r],["$s",i],["$m",s],["$H",u],["$W",a],["$M",f],["$y",c],["$D",d]].forEach((function(t){T[t[1]]=function(e){return this.$g(e,t[0],t[1])}})),w.extend=function(t,e){return t.$i||(t(e,_,w),t.$i=!0),w},w.locale=S,w.isDayjs=p,w.unix=function(t){return w(1e3*t)},w.en=D[g],w.Ls=D,w.p={},w}));
-}, function(modId) {var map = {}; return __REQUIRE__(map[modId], modId); })
-return __REQUIRE__(1679288587885);
-})()
-//miniprogram-npm-outsideDeps=[]
-//# sourceMappingURL=index.js.map
+import * as C from './constant';
+import en from './locale/en';
+import U from './utils';
+var L = 'en'; // global locale
+
+var Ls = {}; // global loaded locale
+
+Ls[L] = en;
+
+var isDayjs = function isDayjs(d) {
+  return d instanceof Dayjs;
+}; // eslint-disable-line no-use-before-define
+
+
+var parseLocale = function parseLocale(preset, object, isLocal) {
+  var l;
+  if (!preset) return L;
+
+  if (typeof preset === 'string') {
+    var presetLower = preset.toLowerCase();
+
+    if (Ls[presetLower]) {
+      l = presetLower;
+    }
+
+    if (object) {
+      Ls[presetLower] = object;
+      l = presetLower;
+    }
+
+    var presetSplit = preset.split('-');
+
+    if (!l && presetSplit.length > 1) {
+      return parseLocale(presetSplit[0]);
+    }
+  } else {
+    var name = preset.name;
+    Ls[name] = preset;
+    l = name;
+  }
+
+  if (!isLocal && l) L = l;
+  return l || !isLocal && L;
+};
+
+var dayjs = function dayjs(date, c) {
+  if (isDayjs(date)) {
+    return date.clone();
+  } // eslint-disable-next-line no-nested-ternary
+
+
+  var cfg = typeof c === 'object' ? c : {};
+  cfg.date = date;
+  cfg.args = arguments; // eslint-disable-line prefer-rest-params
+
+  return new Dayjs(cfg); // eslint-disable-line no-use-before-define
+};
+
+var wrapper = function wrapper(date, instance) {
+  return dayjs(date, {
+    locale: instance.$L,
+    utc: instance.$u,
+    x: instance.$x,
+    $offset: instance.$offset // todo: refactor; do not use this.$offset in you code
+
+  });
+};
+
+var Utils = U; // for plugin use
+
+Utils.l = parseLocale;
+Utils.i = isDayjs;
+Utils.w = wrapper;
+
+var parseDate = function parseDate(cfg) {
+  var date = cfg.date,
+      utc = cfg.utc;
+  if (date === null) return new Date(NaN); // null is invalid
+
+  if (Utils.u(date)) return new Date(); // today
+
+  if (date instanceof Date) return new Date(date);
+
+  if (typeof date === 'string' && !/Z$/i.test(date)) {
+    var d = date.match(C.REGEX_PARSE);
+
+    if (d) {
+      var m = d[2] - 1 || 0;
+      var ms = (d[7] || '0').substring(0, 3);
+
+      if (utc) {
+        return new Date(Date.UTC(d[1], m, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, ms));
+      }
+
+      return new Date(d[1], m, d[3] || 1, d[4] || 0, d[5] || 0, d[6] || 0, ms);
+    }
+  }
+
+  return new Date(date); // everything else
+};
+
+var Dayjs = /*#__PURE__*/function () {
+  function Dayjs(cfg) {
+    this.$L = parseLocale(cfg.locale, null, true);
+    this.parse(cfg); // for plugin
+  }
+
+  var _proto = Dayjs.prototype;
+
+  _proto.parse = function parse(cfg) {
+    this.$d = parseDate(cfg);
+    this.$x = cfg.x || {};
+    this.init();
+  };
+
+  _proto.init = function init() {
+    var $d = this.$d;
+    this.$y = $d.getFullYear();
+    this.$M = $d.getMonth();
+    this.$D = $d.getDate();
+    this.$W = $d.getDay();
+    this.$H = $d.getHours();
+    this.$m = $d.getMinutes();
+    this.$s = $d.getSeconds();
+    this.$ms = $d.getMilliseconds();
+  } // eslint-disable-next-line class-methods-use-this
+  ;
+
+  _proto.$utils = function $utils() {
+    return Utils;
+  };
+
+  _proto.isValid = function isValid() {
+    return !(this.$d.toString() === C.INVALID_DATE_STRING);
+  };
+
+  _proto.isSame = function isSame(that, units) {
+    var other = dayjs(that);
+    return this.startOf(units) <= other && other <= this.endOf(units);
+  };
+
+  _proto.isAfter = function isAfter(that, units) {
+    return dayjs(that) < this.startOf(units);
+  };
+
+  _proto.isBefore = function isBefore(that, units) {
+    return this.endOf(units) < dayjs(that);
+  };
+
+  _proto.$g = function $g(input, get, set) {
+    if (Utils.u(input)) return this[get];
+    return this.set(set, input);
+  };
+
+  _proto.unix = function unix() {
+    return Math.floor(this.valueOf() / 1000);
+  };
+
+  _proto.valueOf = function valueOf() {
+    // timezone(hour) * 60 * 60 * 1000 => ms
+    return this.$d.getTime();
+  };
+
+  _proto.startOf = function startOf(units, _startOf) {
+    var _this = this;
+
+    // startOf -> endOf
+    var isStartOf = !Utils.u(_startOf) ? _startOf : true;
+    var unit = Utils.p(units);
+
+    var instanceFactory = function instanceFactory(d, m) {
+      var ins = Utils.w(_this.$u ? Date.UTC(_this.$y, m, d) : new Date(_this.$y, m, d), _this);
+      return isStartOf ? ins : ins.endOf(C.D);
+    };
+
+    var instanceFactorySet = function instanceFactorySet(method, slice) {
+      var argumentStart = [0, 0, 0, 0];
+      var argumentEnd = [23, 59, 59, 999];
+      return Utils.w(_this.toDate()[method].apply( // eslint-disable-line prefer-spread
+      _this.toDate('s'), (isStartOf ? argumentStart : argumentEnd).slice(slice)), _this);
+    };
+
+    var $W = this.$W,
+        $M = this.$M,
+        $D = this.$D;
+    var utcPad = "set" + (this.$u ? 'UTC' : '');
+
+    switch (unit) {
+      case C.Y:
+        return isStartOf ? instanceFactory(1, 0) : instanceFactory(31, 11);
+
+      case C.M:
+        return isStartOf ? instanceFactory(1, $M) : instanceFactory(0, $M + 1);
+
+      case C.W:
+        {
+          var weekStart = this.$locale().weekStart || 0;
+          var gap = ($W < weekStart ? $W + 7 : $W) - weekStart;
+          return instanceFactory(isStartOf ? $D - gap : $D + (6 - gap), $M);
+        }
+
+      case C.D:
+      case C.DATE:
+        return instanceFactorySet(utcPad + "Hours", 0);
+
+      case C.H:
+        return instanceFactorySet(utcPad + "Minutes", 1);
+
+      case C.MIN:
+        return instanceFactorySet(utcPad + "Seconds", 2);
+
+      case C.S:
+        return instanceFactorySet(utcPad + "Milliseconds", 3);
+
+      default:
+        return this.clone();
+    }
+  };
+
+  _proto.endOf = function endOf(arg) {
+    return this.startOf(arg, false);
+  };
+
+  _proto.$set = function $set(units, _int) {
+    var _C$D$C$DATE$C$M$C$Y$C;
+
+    // private set
+    var unit = Utils.p(units);
+    var utcPad = "set" + (this.$u ? 'UTC' : '');
+    var name = (_C$D$C$DATE$C$M$C$Y$C = {}, _C$D$C$DATE$C$M$C$Y$C[C.D] = utcPad + "Date", _C$D$C$DATE$C$M$C$Y$C[C.DATE] = utcPad + "Date", _C$D$C$DATE$C$M$C$Y$C[C.M] = utcPad + "Month", _C$D$C$DATE$C$M$C$Y$C[C.Y] = utcPad + "FullYear", _C$D$C$DATE$C$M$C$Y$C[C.H] = utcPad + "Hours", _C$D$C$DATE$C$M$C$Y$C[C.MIN] = utcPad + "Minutes", _C$D$C$DATE$C$M$C$Y$C[C.S] = utcPad + "Seconds", _C$D$C$DATE$C$M$C$Y$C[C.MS] = utcPad + "Milliseconds", _C$D$C$DATE$C$M$C$Y$C)[unit];
+    var arg = unit === C.D ? this.$D + (_int - this.$W) : _int;
+
+    if (unit === C.M || unit === C.Y) {
+      // clone is for badMutable plugin
+      var date = this.clone().set(C.DATE, 1);
+      date.$d[name](arg);
+      date.init();
+      this.$d = date.set(C.DATE, Math.min(this.$D, date.daysInMonth())).$d;
+    } else if (name) this.$d[name](arg);
+
+    this.init();
+    return this;
+  };
+
+  _proto.set = function set(string, _int2) {
+    return this.clone().$set(string, _int2);
+  };
+
+  _proto.get = function get(unit) {
+    return this[Utils.p(unit)]();
+  };
+
+  _proto.add = function add(number, units) {
+    var _this2 = this,
+        _C$MIN$C$H$C$S$unit;
+
+    number = Number(number); // eslint-disable-line no-param-reassign
+
+    var unit = Utils.p(units);
+
+    var instanceFactorySet = function instanceFactorySet(n) {
+      var d = dayjs(_this2);
+      return Utils.w(d.date(d.date() + Math.round(n * number)), _this2);
+    };
+
+    if (unit === C.M) {
+      return this.set(C.M, this.$M + number);
+    }
+
+    if (unit === C.Y) {
+      return this.set(C.Y, this.$y + number);
+    }
+
+    if (unit === C.D) {
+      return instanceFactorySet(1);
+    }
+
+    if (unit === C.W) {
+      return instanceFactorySet(7);
+    }
+
+    var step = (_C$MIN$C$H$C$S$unit = {}, _C$MIN$C$H$C$S$unit[C.MIN] = C.MILLISECONDS_A_MINUTE, _C$MIN$C$H$C$S$unit[C.H] = C.MILLISECONDS_A_HOUR, _C$MIN$C$H$C$S$unit[C.S] = C.MILLISECONDS_A_SECOND, _C$MIN$C$H$C$S$unit)[unit] || 1; // ms
+
+    var nextTimeStamp = this.$d.getTime() + number * step;
+    return Utils.w(nextTimeStamp, this);
+  };
+
+  _proto.subtract = function subtract(number, string) {
+    return this.add(number * -1, string);
+  };
+
+  _proto.format = function format(formatStr) {
+    var _this3 = this;
+
+    var locale = this.$locale();
+    if (!this.isValid()) return locale.invalidDate || C.INVALID_DATE_STRING;
+    var str = formatStr || C.FORMAT_DEFAULT;
+    var zoneStr = Utils.z(this);
+    var $H = this.$H,
+        $m = this.$m,
+        $M = this.$M;
+    var weekdays = locale.weekdays,
+        months = locale.months,
+        meridiem = locale.meridiem;
+
+    var getShort = function getShort(arr, index, full, length) {
+      return arr && (arr[index] || arr(_this3, str)) || full[index].slice(0, length);
+    };
+
+    var get$H = function get$H(num) {
+      return Utils.s($H % 12 || 12, num, '0');
+    };
+
+    var meridiemFunc = meridiem || function (hour, minute, isLowercase) {
+      var m = hour < 12 ? 'AM' : 'PM';
+      return isLowercase ? m.toLowerCase() : m;
+    };
+
+    var matches = {
+      YY: String(this.$y).slice(-2),
+      YYYY: this.$y,
+      M: $M + 1,
+      MM: Utils.s($M + 1, 2, '0'),
+      MMM: getShort(locale.monthsShort, $M, months, 3),
+      MMMM: getShort(months, $M),
+      D: this.$D,
+      DD: Utils.s(this.$D, 2, '0'),
+      d: String(this.$W),
+      dd: getShort(locale.weekdaysMin, this.$W, weekdays, 2),
+      ddd: getShort(locale.weekdaysShort, this.$W, weekdays, 3),
+      dddd: weekdays[this.$W],
+      H: String($H),
+      HH: Utils.s($H, 2, '0'),
+      h: get$H(1),
+      hh: get$H(2),
+      a: meridiemFunc($H, $m, true),
+      A: meridiemFunc($H, $m, false),
+      m: String($m),
+      mm: Utils.s($m, 2, '0'),
+      s: String(this.$s),
+      ss: Utils.s(this.$s, 2, '0'),
+      SSS: Utils.s(this.$ms, 3, '0'),
+      Z: zoneStr // 'ZZ' logic below
+
+    };
+    return str.replace(C.REGEX_FORMAT, function (match, $1) {
+      return $1 || matches[match] || zoneStr.replace(':', '');
+    }); // 'ZZ'
+  };
+
+  _proto.utcOffset = function utcOffset() {
+    // Because a bug at FF24, we're rounding the timezone offset around 15 minutes
+    // https://github.com/moment/moment/pull/1871
+    return -Math.round(this.$d.getTimezoneOffset() / 15) * 15;
+  };
+
+  _proto.diff = function diff(input, units, _float) {
+    var _C$Y$C$M$C$Q$C$W$C$D$;
+
+    var unit = Utils.p(units);
+    var that = dayjs(input);
+    var zoneDelta = (that.utcOffset() - this.utcOffset()) * C.MILLISECONDS_A_MINUTE;
+    var diff = this - that;
+    var result = Utils.m(this, that);
+    result = (_C$Y$C$M$C$Q$C$W$C$D$ = {}, _C$Y$C$M$C$Q$C$W$C$D$[C.Y] = result / 12, _C$Y$C$M$C$Q$C$W$C$D$[C.M] = result, _C$Y$C$M$C$Q$C$W$C$D$[C.Q] = result / 3, _C$Y$C$M$C$Q$C$W$C$D$[C.W] = (diff - zoneDelta) / C.MILLISECONDS_A_WEEK, _C$Y$C$M$C$Q$C$W$C$D$[C.D] = (diff - zoneDelta) / C.MILLISECONDS_A_DAY, _C$Y$C$M$C$Q$C$W$C$D$[C.H] = diff / C.MILLISECONDS_A_HOUR, _C$Y$C$M$C$Q$C$W$C$D$[C.MIN] = diff / C.MILLISECONDS_A_MINUTE, _C$Y$C$M$C$Q$C$W$C$D$[C.S] = diff / C.MILLISECONDS_A_SECOND, _C$Y$C$M$C$Q$C$W$C$D$)[unit] || diff; // milliseconds
+
+    return _float ? result : Utils.a(result);
+  };
+
+  _proto.daysInMonth = function daysInMonth() {
+    return this.endOf(C.M).$D;
+  };
+
+  _proto.$locale = function $locale() {
+    // get locale object
+    return Ls[this.$L];
+  };
+
+  _proto.locale = function locale(preset, object) {
+    if (!preset) return this.$L;
+    var that = this.clone();
+    var nextLocaleName = parseLocale(preset, object, true);
+    if (nextLocaleName) that.$L = nextLocaleName;
+    return that;
+  };
+
+  _proto.clone = function clone() {
+    return Utils.w(this.$d, this);
+  };
+
+  _proto.toDate = function toDate() {
+    return new Date(this.valueOf());
+  };
+
+  _proto.toJSON = function toJSON() {
+    return this.isValid() ? this.toISOString() : null;
+  };
+
+  _proto.toISOString = function toISOString() {
+    // ie 8 return
+    // new Dayjs(this.valueOf() + this.$d.getTimezoneOffset() * 60000)
+    // .format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')
+    return this.$d.toISOString();
+  };
+
+  _proto.toString = function toString() {
+    return this.$d.toUTCString();
+  };
+
+  return Dayjs;
+}();
+
+var proto = Dayjs.prototype;
+dayjs.prototype = proto;
+[['$ms', C.MS], ['$s', C.S], ['$m', C.MIN], ['$H', C.H], ['$W', C.D], ['$M', C.M], ['$y', C.Y], ['$D', C.DATE]].forEach(function (g) {
+  proto[g[1]] = function (input) {
+    return this.$g(input, g[0], g[1]);
+  };
+});
+
+dayjs.extend = function (plugin, option) {
+  if (!plugin.$i) {
+    // install plugin only once
+    plugin(option, Dayjs, dayjs);
+    plugin.$i = true;
+  }
+
+  return dayjs;
+};
+
+dayjs.locale = parseLocale;
+dayjs.isDayjs = isDayjs;
+
+dayjs.unix = function (timestamp) {
+  return dayjs(timestamp * 1e3);
+};
+
+dayjs.en = Ls[L];
+dayjs.Ls = Ls;
+dayjs.p = {};
+export default dayjs;

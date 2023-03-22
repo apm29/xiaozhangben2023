@@ -24,6 +24,12 @@ exports.main = async (event, context) => {
         msg: `账本未选择`
       };
     }
+    if(!event.payload.date){
+      return {
+        success: false,
+        msg: `日期未选择`
+      };
+    }
     if(!event.payload.type || !event.payload.sub_type){
       return {
         success: false,

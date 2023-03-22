@@ -40,3 +40,7 @@ sh ./miniprogram/gen-windicss.sh
 
 ## computed
 - https://developers.weixin.qq.com/community/develop/article/doc/000a4442bd44c84e740d6b6b051413
+
+## dayjs问题
+
+由于微信npm不完备,引入dayjs需要做额外处理,否则只能引入index,详见 https://github.com/iamkun/dayjs/issues/1326

@@ -30,9 +30,9 @@
   --tw-bg-opacity: 1;
   background-color: rgba(217, 119, 6, var(--tw-bg-opacity));
 }
-.bg-gray-50 {
+.bg-gray-100 {
   --tw-bg-opacity: 1;
-  background-color: rgba(249, 250, 251, var(--tw-bg-opacity));
+  background-color: rgba(243, 244, 246, var(--tw-bg-opacity));
 }
 .bg-opacity-30 {
   --tw-bg-opacity: 0.3;
@@ -144,6 +144,12 @@
 .font-bold {
   font-weight: 700;
 }
+.font-light {
+  font-weight: 300;
+}
+.font-normal {
+  font-weight: 400;
+}
 .h-full {
   height: 100%;
 }
@@ -161,10 +167,6 @@
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
-}
-.text-lg {
-  font-size: 1.125rem;
-  line-height: 1.75rem;
 }
 .my-3 {
   margin-top: 0.75rem;
@@ -188,6 +190,9 @@
 }
 .p-2 {
   padding: 0.5rem;
+}
+.p-1 {
+  padding: 0.25rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -276,6 +281,10 @@
 .text-gray-400 {
   --tw-text-opacity: 1;
   color: rgba(156, 163, 175, var(--tw-text-opacity));
+}
+.text-yellow-500 {
+  --tw-text-opacity: 1;
+  color: rgba(245, 158, 11, var(--tw-text-opacity));
 }
 .text-opacity-80 {
   --tw-text-opacity: 0.8;

@@ -1,5 +1,5 @@
 const types = require("../../dict/types")
-const dayjs = require("dayjs")
+const dayjs = require("dayjs").default
 const computedBehavior = require("miniprogram-computed").behavior;
 const {
   eventBus

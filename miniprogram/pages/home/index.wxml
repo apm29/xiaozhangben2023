@@ -1,32 +1,36 @@
 <!--pages/home/index.wxml-->
 <authorization>
-  <view class="flex flex-col bg-gray-50 h-full">
+  <view class="flex flex-col bg-gray-200 h-full">
     <view class="primary-bg-color px-2 py-2" style="height: 155rpx;">
       <!-- 类型选择 -->
       <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
       <!-- 月份选择 -->
       <month-picker model:month="{{ month }}"></month-picker>
     </view>
-    <scroll-view scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
-      <view wx:for="{{ detailRawList }}" class="mx-2" wx:key="date">
-        <view class="bg-gray-200 text-sm rounded-t font-bold mt-2 px-4 py-2">
-          {{ item.month_date }} {{ item.week_day }}
+    <scroll-view refresher-triggered="{{ refreshing }}" 	refresher-enabled="{{true}}" bindrefresherrefresh="handleRefresh" scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
+      <view wx:for="{{ detailRawList }}" class="mx-2" wx:key="date" wx:for-index="dayIndex" wx:for-item="dayItem">
+        <view class="bg-gray-100 text-sm rounded-t gap-2 mt-2 px-4 py-2 shadow flex items-center">
+          {{ dayItem.month_date }} {{ dayItem.week_day }}
+          <view class="flex-grow"></view>
+          <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1">出</text>
+          <text class="text-xs font-light">{{ dayItem.summary.expenditure }}</text>
+          <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1">入</text>
+          <text class="text-xs font-light">{{ dayItem.summary.income }}</text> 
         </view>
-        <view wx:for="{{ item.items }}" wx:key="_id" class="flex gap-4 items-center bg-white rounded shadow px-3 py-2">
+        <view wx:for="{{ dayItem.items }}" wx:key="_id" wx:for-index="detailIndex" wx:for-item="detailItem" class="flex gap-4 items-center bg-white shadow px-3 py-2  {{ detailIndex === dayItem.items.length-1 ? 'rounded-bottom':'border-bottom' }}">
           <view class="w-8 h-8 rounded-full primary-bg-color flex items-center justify-center">
-            <svg-icon name="{{item.sub_type_item.icon}}" color="#ffffff" size="1.5em"></svg-icon>
+            <svg-icon name="{{detailItem.sub_type_item.icon}}" color="#ffffff" size="1.25em"></svg-icon>
           </view>
           <view class="flex-grow">
-            <view class="flex text-sm">
-              {{ item.sub_type_item.name }}
+            <view class="flex text-sm font-light">
+              {{ detailItem.sub_type_item.name }}
               <view class="flex-grow"></view>
-              <view class="text-lg">
-                {{ item.type === 1 ? '-': item.type === 2 ? '+' : '' }}
-                {{ item.amount }}
+              <view class="text-normal font-normal {{ detailItem.type === 2 ?'text-yellow-500':''}}">
+                {{ detailItem.type === 1 ? '-': detailItem.type === 2 ? '+' : '' }}{{ detailItem.amount }}
               </view>
             </view>
-            <view class="text-xs text-gray-400">
-              {{ item.hour_minute }}  {{ item.remark || '' }}
+            <view class="text-xs text-gray-400 flex">
+              {{ detailItem.hour_minute }}  <view class="flex-grow"></view> {{ detailItem.remark || '' }}
             </view>
           </view>
         </view>

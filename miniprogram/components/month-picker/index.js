@@ -1,4 +1,4 @@
-const dayjs = require("dayjs")
+const dayjs = require("dayjs").default
 const computedBehavior = require("miniprogram-computed").behavior
 // components/month-picker/index.js
 Component({
