@@ -17,7 +17,7 @@ Page({
     const { avatarUrl } = e.detail 
     const userInfo = app.store.getState().userInfo
     wx.cloud.uploadFile({
-      cloudPath: `${userInfo._id}_AVATAR.jpg`,
+      cloudPath: `${userInfo.openid}_AVATAR.jpg`,
       filePath: avatarUrl,
       success: (res)=>{
         app.store.setState({
