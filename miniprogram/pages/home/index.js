@@ -1,6 +1,7 @@
 const dayjs = require("dayjs").default;
 const defaultMonth = dayjs().format("YYYY-MM")
 const types = require("../../dict/types")
+const { eventBus } = require("../../utils/event-bus")
 const {
   post
 } = require("../../utils/remote")
@@ -15,18 +16,17 @@ Page({
   data: {
     typeId: null,
     subTypeId: null,
-    month: defaultMonth,
+    //是否指定月份,默认不指定
+    month: null,
     listTopMonth: defaultMonth,
     page: 1,
-    size: 20,
+    size: 15,
     total: 0,
     refreshing: false,
     loading: false,
+    hasMore: true,
     detailRawList: [],
     types: types,
-    scrollTop: 0,
-    liveScrollTop: 0,
-    tempScrollTop: 0
   },
 
   computed: {
@@ -75,30 +75,18 @@ Page({
 
   },
 
-  handleMonthChange(e) {
-    //手动修改月份
-    this.setData({
-      page: 1,
-      detailRawList: [],
-      month: e.detail,
-    });
-    this.getDetail();
-  },
+  
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log("初始加载");
     this.getDetail()
   },
 
   handleScroll(e) {
-    const {
-      scrollTop
-    } = e.detail;
-    this.setData({
-      liveScrollTop: scrollTop
-    })
+    //获取最上面的日期
     wx.createSelectorQuery().select('#date-list').boundingClientRect((rect) => {
       wx.createSelectorQuery().selectAll('.date-item').boundingClientRect((items) => {
         items.sort((a, b) => {
@@ -120,11 +108,13 @@ Page({
 
   // 下拉刷新
   handleRefresh() {
+    console.log("下拉刷新");
     this.setData({
       page: 1,
       detailRawList: [],
-      month: defaultMonth,
-      refreshing: true
+      //刷新后去掉月份
+      month: null,
+      hasMore: true
     })
     this.getDetail().finally(() => {
       this.setData({
@@ -133,42 +123,54 @@ Page({
     })
   },
 
+  handleTypeChange(e) {
+    console.log("修改类型");
+    //手动修改类型
+    this.setData({
+      page: 1,
+      detailRawList: [],
+      subTypeId: e.detail.subTypeId,
+      typeId: e.detail.typeId,
+      hasMore: true
+    });
+    this.getDetail()
+  },
+
+  handleMonthChange(e) {
+    console.log("修改月份");
+    //手动修改月份
+    this.setData({
+      page: 1,
+      detailRawList: [],
+      month: e.detail,
+      hasMore: true
+    });
+    this.getDetail()
+  },
+
 
   //加载更多
   handleLoadMore() {
-    if (this.data.loading) {
-      return
-    }
-    //本月没有更多了
-    if (this.data.total <= this.data.detailRawList.filter(it => it.month === this.data.month).length) {
-      this.setData({
-        month: dayjs(this.data.month).subtract(1, "month").format("YYYY-MM"),
-      })
-    } else {
-      this.setData({
-        page: this.data.page + 1,
-      })
-    }
-    console.log("加载", this.data.month, this.data.page);
+    console.log("加载更多");
     this.getDetail()
   },
 
   async getDetail() {
+    if (this.data.loading || !this.data.hasMore) {
+      return
+    }
     this.setData({
       loading: true,
-      tempScrollTop: this.data.liveScrollTop
     });
     const res = await post("detail", "query", {
       month: this.data.month,
       sub_type_id: this.data.subTypeId,
       type_id: this.data.typeId,
       page_no: this.data.page,
-      page_size: this.data.size
+      page_size: this.data.size,
     }, {
       showLoading: false
     });
-
-
     //处理显示
     const old = res.data.map(it => {
       return {
@@ -181,38 +183,35 @@ Page({
         color: this.data.types.find(type => type.id === it.type)?.color,
       }
     });
+    const newDetailRawList = [...this.data.detailRawList, ...old]
+    const total = res.total
     this.setData({
-      detailRawList: [...this.data.detailRawList, ...old],
-      total: res.total,
+      detailRawList: newDetailRawList,
+      total: total,
       loading: false,
-      scrollTop: this.data.tempScrollTop
+      hasMore: newDetailRawList.length < total,
+      page: this.data.page + 1,
     });
   },
 
   handleAddDetail(e) {
-    console.log(e);
+    console.log("新增明细");
     post("detail", "create", e.detail, {
       showSuccess: true
     }).then(res => {
+      eventBus.publish("addDetailSuccess")
       this.setData({
+        //刷新
         page: 1,
         detailRawList: [],
-        month: defaultMonth,
-        refreshing: true
+        month: null,
+        refreshing: true,
+        hasMore: true
       });
       this.getDetail()
     })
   },
 
 
-  handleTypeChange(e) {
-    //手动修改类型
-    this.setData({
-      page: 1,
-      detailRawList: [],
-      subTypeId: e.detail.subTypeId,
-      typeId: e.detail.typeId,
-    });
-    this.getDetail();
-  },
+  
 })

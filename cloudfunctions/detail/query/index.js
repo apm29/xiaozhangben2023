@@ -29,13 +29,13 @@ exports.main = async (event, context) => {
     const page_no = event.payload.page_no || 1
     const type_id = event.payload.type_id
     const sub_type_id = event.payload.sub_type_id
-    const month = dayjs(event.payload.month).format("YYYY-MM")
-    const nextMonth = dayjs(month).add(1, "month").format("YYYY-MM")
+    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs()
+    let nextMonth = dayjs(month).add(1, "month").format("YYYY-MM")
 
     const whereArgs = {
       creator_openid: wxContext.OPENID,
       account_book_id: event.payload.account_book_id,
-      date: _.gte(month).lt(nextMonth),
+      date:  _.lt(nextMonth),
     }
     if (type_id) {
       whereArgs.type = _.eq(type_id)
@@ -44,7 +44,7 @@ exports.main = async (event, context) => {
       whereArgs.sub_type = _.eq(sub_type_id)
     }
     const whereQuery = details.where(whereArgs)
-      .orderBy("created_time", "desc");
+      .orderBy("date", "desc");
     const {
       data
     } = await whereQuery
@@ -53,6 +53,16 @@ exports.main = async (event, context) => {
       .get()
 
     const { total } = await whereQuery.count()
+
+    //求返回的数据包含的月份并排序
+    const months = data.reduce((months,item)=>{
+      const itemMonth = dayjs(item.date).format("YYYY-MM")
+      if(!months.includes(itemMonth)){
+        months.push(itemMonth)
+      }
+      return months;
+    },[]).sort((a,b)=> dayjs(a).isBefore(b)?1:-1)
+
     //处理类型名称
     data.map(detail => {
       return processIconAndName(
@@ -68,7 +78,8 @@ exports.main = async (event, context) => {
       data,
       total,
       page_no,
-      page_size
+      page_size,
+      months
     };
   } catch (e) {
     // 这里catch到的是该collection已经存在，从业务逻辑上来说是运行成功的，所以catch返回success给前端，避免工具在前端抛出异常

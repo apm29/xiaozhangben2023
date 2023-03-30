@@ -1,5 +1,7 @@
 // components/safe-input/index.js
+const computedBehavior = require("miniprogram-computed").behavior
 Component({
+  behaviors:[computedBehavior],
   /**
    * 组件的属性列表
    */
@@ -29,6 +31,14 @@ Component({
       this.setData({
         content: this.value.split("")
       })
+    }
+  },
+
+  watch:{
+    value(value){
+        this.setData({
+          content: value ? (value+"").split("") : []
+        })
     }
   },
 

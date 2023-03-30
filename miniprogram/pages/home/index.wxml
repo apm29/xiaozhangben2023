@@ -7,7 +7,7 @@
       <!-- 月份选择 -->
       <month-picker month="{{ listTopMonth }}" bind:change="handleMonthChange"></month-picker>
     </view>
-    <scroll-view id="date-list" 	lower-threshold="{{10}}" bindscroll="handleScroll" scroll-top="{{ scrollTop }}" 	enable-passive="{{true}}" paging-enabled="{{true}}" refresher-triggered="{{ refreshing }}" 	refresher-enabled="{{true}}" bindrefresherrefresh="handleRefresh" bindscrolltolower="handleLoadMore" scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
+    <scroll-view id="date-list" lower-threshold="{{60}}" bindscroll="handleScroll" enable-passive="{{true}}" paging-enabled="{{true}}" refresher-triggered="{{ refreshing }}" refresher-enabled="{{true}}" bindrefresherrefresh="handleRefresh" bindscrolltolower="handleLoadMore" scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
       <view wx:for="{{ dayGroupedList }}" data-date="{{dayItem.date}}" class="mx-2 date-item" wx:key="date" wx:for-index="dayIndex" wx:for-item="dayItem">
         <view class="bg-gray-100 text-sm rounded-t gap-2 mt-2 px-4 py-2 shadow flex items-center">
           {{ dayItem.month_date }} {{ dayItem.week_day }}
@@ -15,7 +15,7 @@
           <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1">出</text>
           <text class="text-xs font-light">{{ dayItem.summary.expenditure }}</text>
           <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1">入</text>
-          <text class="text-xs font-light">{{ dayItem.summary.income }}</text> 
+          <text class="text-xs font-light">{{ dayItem.summary.income }}</text>
         </view>
         <view wx:for="{{ dayItem.items }}" wx:key="_id" wx:for-index="detailIndex" wx:for-item="detailItem" class="flex gap-4 items-center bg-white shadow px-3 py-2  {{ detailIndex === dayItem.items.length-1 ? 'rounded-bottom':'border-bottom' }}">
           <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: {{ detailItem.bgcolor }}; color: {{ detailItem.color }}">
@@ -30,14 +30,19 @@
               </view>
             </view>
             <view class="text-xs text-gray-400 flex">
-              {{ detailItem.hour_minute }}  <view class="flex-grow"></view> {{ detailItem.remark || '' }}
+              {{ detailItem.hour_minute }} <view class="flex-grow"></view> {{ detailItem.remark || '' }}
             </view>
           </view>
         </view>
       </view>
+      <import src="index.skeleton.wxml" />
+      <template is="skeleton" wx:if="{{loading}}" />
       <view wx:if="{{ loading }}" class="flex items-center justify-center text-gray-400 gap-4 py-4">
         <svg-icon name="eos-icons:loading" size="2em" color="#125b9f"></svg-icon>
         正在加载中...
+      </view>
+      <view wx:if="{{ !dayGroupedList || !dayGroupedList.length }}" class="flex items-center justify-center text-gray-400 gap-4 py-4">
+        暂无记录,赶紧记一笔吧~
       </view>
       <view style="height: 400rpx;"></view>
     </scroll-view>

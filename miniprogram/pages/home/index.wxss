@@ -1,5 +1,5 @@
 /* pages/home/index.wxss */
-
+@import "./index.skeleton.wxss";
 .border-bottom{
   border-style: solid;
   border-width: 0 0 2rpx 0;

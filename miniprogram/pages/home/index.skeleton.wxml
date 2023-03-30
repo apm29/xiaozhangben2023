@@ -1,0 +1,211 @@
+<!--
+此文件为开发者工具生成，生成时间: 2023/3/30下午1:35:22
+使用方法：
+在 /Users/ciih/WeChatProjects/xiaozhangben2023/miniprogram/pages/home/index.wxml 引入模板
+
+```
+<import src="index.skeleton.wxml"/>
+<template is="skeleton" wx:if="{{loading}}" />
+```
+
+在 /Users/ciih/WeChatProjects/xiaozhangben2023/miniprogram/pages/home/index.wxss 中引入样式
+```
+@import "./index.skeleton.wxss";
+```
+
+更多详细信息可以参考文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/skeleton.html
+-->
+<template name="skeleton">
+  <view class="sk-container">
+    <view class="mx-2 date-item" data-date="2023-03-30">
+      <view class="bg-gray-100 text-sm rounded-t gap-2 mt-2 px-4 py-2 shadow flex items-center sk-transparent">
+        3月30日 星期四
+        <view class="flex-grow"></view>
+        <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1 sk-transparent sk-text-12-5000-306 sk-text">出</text>
+        <text class="text-xs font-light sk-transparent sk-text-12-5000-941 sk-text">2366.00</text>
+        <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1 sk-transparent sk-text-12-5000-705 sk-text">入</text>
+        <text class="text-xs font-light sk-transparent sk-text-12-5000-340 sk-text">23662.00</text>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 border-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Cpath fill='currentColor' d='M30 11V3a1 1 0 0 0-1-1H19a1 1 0 0 0-1 1v8a6.004 6.004 0 0 0 5 5.91V28h-4v2h10v-2h-4V16.91A6.004 6.004 0 0 0 30 11zm-10 0V4h8v7a4 4 0 1 1-8 0zm-8-9v9.02a3.964 3.964 0 0 1-3.96 3.96A4.005 4.005 0 0 1 4 11.02V2H2v9.02a5.989 5.989 0 0 0 5 5.865V30h2V16.895a5.965 5.965 0 0 0 5-5.875V2z'/%3E%3Cpath fill='currentColor' d='M7 2h2v9.98H7z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            餐饮
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-355 sk-text">
+              -2366
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            10:00
+            <view class="flex-grow"></view> asdajksdasda
+          </view>
+        </view>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 rounded-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,211,131,0.2); color: #12db96">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #12db96; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 1024 1024'%3E%3Cpath fill='currentColor' d='M911.5 700.7a8 8 0 0 0-10.3-4.8L840 718.2V180c0-37.6-30.4-68-68-68H252c-37.6 0-68 30.4-68 68v538.2l-61.3-22.3c-.9-.3-1.8-.5-2.7-.5c-4.4 0-8 3.6-8 8V763c0 3.3 2.1 6.3 5.3 7.5L501 910.1c7.1 2.6 14.8 2.6 21.9 0l383.8-139.5c3.2-1.2 5.3-4.2 5.3-7.5v-59.6c0-1-.2-1.9-.5-2.8zM512 837.5l-256-93.1V184h512v560.4l-256 93.1zM660.6 312h-54.5c-3 0-5.8 1.7-7.1 4.4l-84.7 168.8H511l-84.7-168.8a8 8 0 0 0-7.1-4.4h-55.7c-1.3 0-2.6.3-3.8 1c-3.9 2.1-5.3 7-3.2 10.8l103.9 191.6h-57c-4.4 0-8 3.6-8 8v27.1c0 4.4 3.6 8 8 8h76v39h-76c-4.4 0-8 3.6-8 8v27.1c0 4.4 3.6 8 8 8h76V704c0 4.4 3.6 8 8 8h49.9c4.4 0 8-3.6 8-8v-63.5h76.3c4.4 0 8-3.6 8-8v-27.1c0-4.4-3.6-8-8-8h-76.3v-39h76.3c4.4 0 8-3.6 8-8v-27.1c0-4.4-3.6-8-8-8H564l103.7-191.6c.6-1.2 1-2.5 1-3.8c-.1-4.3-3.7-7.9-8.1-7.9z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            兼职
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal text-yellow-500 sk-transparent sk-text-15-0000-466 sk-text">
+              +23662
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            10:09
+            <view class="flex-grow"></view> 1111
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="mx-2 date-item" data-date="2023-03-21">
+      <view class="bg-gray-100 text-sm rounded-t gap-2 mt-2 px-4 py-2 shadow flex items-center sk-transparent">
+        3月21日 星期二
+        <view class="flex-grow"></view>
+        <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1 sk-transparent sk-text-12-5000-676 sk-text">出</text>
+        <text class="text-xs font-light sk-transparent sk-text-12-5000-273 sk-text">2841.21</text>
+        <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1 sk-transparent sk-text-12-5000-574 sk-text">入</text>
+        <text class="text-xs font-light sk-transparent sk-text-12-5000-161 sk-text">0.00</text>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 border-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Cpath fill='currentColor' d='M23 23v3H8.5a4.5 4.5 0 0 1 0-9H9v-2h-.5a6.5 6.5 0 0 0 0 13H23v3h8v-8Zm6 6h-4v-4h4Z'/%3E%3Cpath fill='currentColor' d='M21 22h-2v-3h-6v3h-2v-3a2.002 2.002 0 0 1 2-2h6a2.002 2.002 0 0 1 2 2zm-5-6a3 3 0 1 1 3-3a3.003 3.003 0 0 1-3 3zm0-4a1 1 0 1 0 1 1a1.001 1.001 0 0 0-1-1z'/%3E%3Cpath fill='currentColor' d='M23.5 4H9V1H1v8h8V6h14.5a4.5 4.5 0 0 1 0 9H23v2h.5a6.5 6.5 0 0 0 0-13ZM7 7H3V3h4Z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            长辈
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-316 sk-text">
+              -556
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            10:21
+            <view class="flex-grow"></view>
+          </view>
+        </view>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 border-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Cpath fill='currentColor' d='M30 11V3a1 1 0 0 0-1-1H19a1 1 0 0 0-1 1v8a6.004 6.004 0 0 0 5 5.91V28h-4v2h10v-2h-4V16.91A6.004 6.004 0 0 0 30 11zm-10 0V4h8v7a4 4 0 1 1-8 0zm-8-9v9.02a3.964 3.964 0 0 1-3.96 3.96A4.005 4.005 0 0 1 4 11.02V2H2v9.02a5.989 5.989 0 0 0 5 5.865V30h2V16.895a5.965 5.965 0 0 0 5-5.875V2z'/%3E%3Cpath fill='currentColor' d='M7 2h2v9.98H7z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            餐饮
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-840 sk-text">
+              -2255.66
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            10:29
+            <view class="flex-grow"></view>
+          </view>
+        </view>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 rounded-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Cpath fill='currentColor' d='M23 30h-2v-2a3.003 3.003 0 0 0-3-3h-4a3.003 3.003 0 0 0-3 3v2H9v-2a5.006 5.006 0 0 1 5-5h4a5.006 5.006 0 0 1 5 5zm-7-17a3 3 0 1 1-3 3a3 3 0 0 1 3-3m0-2a5 5 0 1 0 5 5a5 5 0 0 0-5-5z'/%3E%3Cpath fill='currentColor' d='M30 30h-2V14.464L16 4.31L4 14.464V30H2V14a1 1 0 0 1 .354-.763l13-11a1 1 0 0 1 1.292 0l13 11A1 1 0 0 1 30 14Z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            住房
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-444 sk-text">
+              -29.55
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            17:10
+            <view class="flex-grow"></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="mx-2 date-item" data-date="2023-03-20">
+      <view class="bg-gray-100 text-sm rounded-t gap-2 mt-2 px-4 py-2 shadow flex items-center sk-transparent">
+        3月20日 星期一
+        <view class="flex-grow"></view>
+        <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1 sk-transparent sk-text-12-5000-544 sk-text">出</text>
+        <text class="text-xs font-light sk-transparent sk-text-12-5000-723 sk-text">770.54</text>
+        <text class="bg-gray-200 text-xs font-light text-gray-400 rounded p-1 sk-transparent sk-text-12-5000-616 sk-text">入</text>
+        <text class="text-xs font-light sk-transparent sk-text-12-5000-380 sk-text">0.00</text>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 border-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='28' r='2' fill='currentColor'/%3E%3Ccircle cx='24' cy='28' r='2' fill='currentColor'/%3E%3Cpath fill='currentColor' d='M28 7H5.82L5 2.8A1 1 0 0 0 4 2H0v2h3.18L7 23.2a1 1 0 0 0 1 .8h18v-2H8.82L8 18h18a1 1 0 0 0 1-.78l2-9A1 1 0 0 0 28 7Zm-2.8 9H7.62l-1.4-7h20.53Z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            购物
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-286 sk-text">
+              -256.88
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            15:17
+            <view class="flex-grow"></view> 一百超市
+          </view>
+        </view>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 border-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Ccircle cx='10' cy='28' r='2' fill='currentColor'/%3E%3Ccircle cx='24' cy='28' r='2' fill='currentColor'/%3E%3Cpath fill='currentColor' d='M28 7H5.82L5 2.8A1 1 0 0 0 4 2H0v2h3.18L7 23.2a1 1 0 0 0 1 .8h18v-2H8.82L8 18h18a1 1 0 0 0 1-.78l2-9A1 1 0 0 0 28 7Zm-2.8 9H7.62l-1.4-7h20.53Z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            购物
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-612 sk-text">
+              -255.66
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            15:18
+            <view class="flex-grow"></view> 测试
+          </view>
+        </view>
+      </view>
+      <view class="flex gap-4 items-center bg-white shadow px-3 py-2 rounded-bottom">
+        <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: rgba(23,131,211,0.2); color: #1296db">
+          <view is="components/svg-icon/index">
+            <view class="icon-index--icon" style="color: #1296db; width: 1.25em;height: 1.25em;--un-icon:url(&quot;data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 32 32'%3E%3Cpath fill='currentColor' d='M25 30a6 6 0 1 1 6-6a6.007 6.007 0 0 1-6 6zm0-10a4 4 0 1 0 4 4a4.005 4.005 0 0 0-4-4zM7 30a6 6 0 1 1 6-6a6.007 6.007 0 0 1-6 6zm0-10a4 4 0 1 0 4 4a4.005 4.005 0 0 0-4-4z'/%3E%3Cpath fill='currentColor' d='M17 27h-2v-6.586L9.585 15a2.003 2.003 0 0 1 0-2.83l4.586-4.585a2.002 2.002 0 0 1 2.828 0L21.414 12H27v2h-6.415l-5-5L11 13.585l6 6zm4.5-19A3.5 3.5 0 1 1 25 4.5A3.504 3.504 0 0 1 21.5 8zm0-5A1.5 1.5 0 1 0 23 4.5A1.502 1.502 0 0 0 21.5 3z'/%3E%3C/svg%3E&quot;)"></view>
+          </view>
+        </view>
+        <view class="flex-grow">
+          <view class="flex text-sm font-light sk-transparent">
+            运动
+            <view class="flex-grow"></view>
+            <view class="text-normal font-normal sk-transparent sk-text-15-0000-228 sk-text">
+              -258
+            </view>
+          </view>
+          <view class="text-xs text-gray-400 flex sk-transparent">
+            17:35
+            <view class="flex-grow"></view> 谢谢小
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>

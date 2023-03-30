@@ -72,6 +72,16 @@ Component({
       const state = app.store.getState();
       this.handleTypeAndAccountBookChange(this.data.type, state)
     })
+
+    eventBus.subscribe("addDetailSuccess",()=>{
+      this.setData({
+        amount: 0,
+        type: 1,
+        date: dayjs().format("YYYY-MM-DD"),
+        sub_type: 1,
+        remark: null,
+      })
+    })
   },
   /**
    * 组件的方法列表
