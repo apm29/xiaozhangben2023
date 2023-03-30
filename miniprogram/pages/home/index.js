@@ -27,6 +27,13 @@ Page({
     hasMore: true,
     detailRawList: [],
     types: types,
+
+    loadingSummary: false,
+    monthSummary:{
+      expenditure: 0,
+      income: 0,
+      unincluded: 0,
+    }
   },
 
   computed: {
@@ -72,17 +79,32 @@ Page({
   },
 
   watch: {
+    listTopMonth(month){
+      this.getMonthSummary()
+    }
+  },
 
+  getMonthSummary(){
+    this.setData({
+      loadingSummary: true,
+    })
+    post("detail","query-month-total",{ month: this.data.listTopMonth },{showLoading: false}).then(res=>{
+      console.log(res);
+      this.setData({
+        loadingSummary: false,
+        monthSummary: res.data
+      })
+    })
   },
 
   
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
     console.log("初始加载");
     this.getDetail()
+    this.getMonthSummary()
   },
 
   handleScroll(e) {

@@ -5,9 +5,15 @@
       <!-- 类型选择 -->
       <types-picker model:sub-type-id="{{ subTypeId }}" model:type-id="{{ typeId }}" bind:input="handleTypeChange"></types-picker>
       <!-- 月份选择 -->
-      <month-picker month="{{ listTopMonth }}" bind:change="handleMonthChange"></month-picker>
+      <view class="flex items-center text-xs text-white text-opacity-60 mt-2 gap-4">
+        <month-picker month="{{ listTopMonth }}" bind:change="handleMonthChange"></month-picker>
+        <view wx:if="{{ !loadingSummary }}">
+          支出 {{ monthSummary.expenditure }} 收入 {{ monthSummary.income }}
+        </view>
+        <svg-icon wx:else name="eos-icons:loading" size="1em" color="#ffffff"></svg-icon>
+      </view>
     </view>
-    <scroll-view id="date-list" lower-threshold="{{60}}" bindscroll="handleScroll" enable-passive="{{true}}" paging-enabled="{{true}}" refresher-triggered="{{ refreshing }}" refresher-enabled="{{true}}" bindrefresherrefresh="handleRefresh" bindscrolltolower="handleLoadMore" scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
+    <scroll-view id="date-list" enable-back-to-top lower-threshold="{{60}}" bindscroll="handleScroll" enable-passive="{{true}}" paging-enabled="{{true}}" refresher-triggered="{{ refreshing }}" refresher-enabled="{{true}}" bindrefresherrefresh="handleRefresh" bindscrolltolower="handleLoadMore" scroll-y="{{true}}" style="height: calc(100vh - 155rpx);">
       <view wx:for="{{ dayGroupedList }}" data-date="{{dayItem.date}}" class="mx-2 date-item" wx:key="date" wx:for-index="dayIndex" wx:for-item="dayItem">
         <view class="bg-gray-100 text-sm rounded-t gap-2 mt-2 px-4 py-2 shadow flex items-center">
           {{ dayItem.month_date }} {{ dayItem.week_day }}

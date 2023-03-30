@@ -150,11 +150,11 @@
 .font-normal {
   font-weight: 400;
 }
-.h-full {
-  height: 100%;
-}
 .h-8 {
   height: 2rem;
+}
+.h-full {
+  height: 100%;
 }
 .text-xs {
   font-size: 0.75rem;
@@ -292,6 +292,9 @@
 }
 .text-opacity-80 {
   --tw-text-opacity: 0.8;
+}
+.text-opacity-60 {
+  --tw-text-opacity: 0.6;
 }
 .w-full {
   width: 100%;

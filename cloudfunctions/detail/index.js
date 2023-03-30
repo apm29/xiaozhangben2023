@@ -2,6 +2,7 @@
 const cloud = require('wx-server-sdk')
 const create = require("./create")
 const query = require("./query")
+const queryMonthTotal = require("./query-month-total")
 
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
@@ -15,5 +16,7 @@ exports.main = async (event, context) => {
       return await create.main(event, context);
     case 'query':
       return await query.main(event, context);
+    case 'query-month-total':
+      return await queryMonthTotal.main(event, context);
   }
 }

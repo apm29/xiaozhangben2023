@@ -1,0 +1,9 @@
+[
+  {
+    "name": "账本云调用",
+    "value": {
+      "topic": "query-month-total",
+      "payload": {}
+    }
+  }
+]
