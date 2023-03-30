@@ -4,7 +4,7 @@ class EventBus {
     this.eventObject = {};
   }
   // 发布事件
-  publish(eventName) {
+  publish(eventName,payload) {
     // 取出当前事件所有的回调函数
     const callbackList = this.eventObject[eventName];
 
@@ -12,7 +12,7 @@ class EventBus {
 
     // 执行每一个回调函数
     for (let callback of callbackList) {
-      callback();
+      callback(payload);
     }
   }
   // 订阅事件

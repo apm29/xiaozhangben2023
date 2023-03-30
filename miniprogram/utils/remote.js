@@ -46,7 +46,9 @@ function post(
     throw err;
   }).finally(() => {
     if (options.showLoading) {
-      wx.hideLoading()
+      wx.hideLoading({
+        noConflict: true
+      })
     } else {
       wx.hideNavigationBarLoading()
     }

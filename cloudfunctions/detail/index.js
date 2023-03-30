@@ -1,6 +1,7 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
 const create = require("./create")
+const edit = require("./edit")
 const query = require("./query")
 const queryMonthTotal = require("./query-month-total")
 
@@ -14,6 +15,8 @@ exports.main = async (event, context) => {
   switch (event.topic) {
     case 'create':
       return await create.main(event, context);
+    case 'edit':
+      return await edit.main(event, context);
     case 'query':
       return await query.main(event, context);
     case 'query-month-total':

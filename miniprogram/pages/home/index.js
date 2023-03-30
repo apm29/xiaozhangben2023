@@ -1,7 +1,9 @@
 const dayjs = require("dayjs").default;
 const defaultMonth = dayjs().format("YYYY-MM")
 const types = require("../../dict/types")
-const { eventBus } = require("../../utils/event-bus")
+const {
+  eventBus
+} = require("../../utils/event-bus")
 const {
   post
 } = require("../../utils/remote")
@@ -29,11 +31,21 @@ Page({
     types: types,
 
     loadingSummary: false,
-    monthSummary:{
+    monthSummary: {
       expenditure: 0,
       income: 0,
       unincluded: 0,
-    }
+    },
+
+    //删除用
+    slideButtons: [{
+        text: '编辑',
+      },
+      {
+        type: 'warn',
+        text: '删除',
+      }
+    ]
   },
 
   computed: {
@@ -79,16 +91,20 @@ Page({
   },
 
   watch: {
-    listTopMonth(month){
+    listTopMonth(month) {
       this.getMonthSummary()
     }
   },
 
-  getMonthSummary(){
+  getMonthSummary() {
     this.setData({
       loadingSummary: true,
     })
-    post("detail","query-month-total",{ month: this.data.listTopMonth },{showLoading: false}).then(res=>{
+    post("detail", "query-month-total", {
+      month: this.data.listTopMonth
+    }, {
+      showLoading: false
+    }).then(res => {
       console.log(res);
       this.setData({
         loadingSummary: false,
@@ -97,7 +113,7 @@ Page({
     })
   },
 
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -227,13 +243,38 @@ Page({
         page: 1,
         detailRawList: [],
         month: null,
-        refreshing: true,
+        hasMore: true
+      });
+      this.getDetail()
+    })
+  },
+  handleEditDetail(e){
+    console.log("编辑明细");
+    post("detail", "edit", e.detail, {
+      showSuccess: true
+    }).then(res => {
+      eventBus.publish("addDetailSuccess")
+      this.setData({
+        //刷新
+        page: 1,
+        detailRawList: [],
+        month: null,
         hasMore: true
       });
       this.getDetail()
     })
   },
 
+  handleSlideDetail(e) {
+    const detailItem = e.currentTarget.dataset.detail
+    if(e.detail.index === 0){
+      //编辑
+      eventBus.publish("editDetail",detailItem);
+    } else if(e.detail.index === 1) {
+      //删除
+    }
+    console.log(e);
+  }
 
-  
+
 })

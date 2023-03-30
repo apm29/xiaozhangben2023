@@ -75,11 +75,25 @@ Component({
 
     eventBus.subscribe("addDetailSuccess",()=>{
       this.setData({
+        id: null,
         amount: 0,
         type: 1,
         date: dayjs().format("YYYY-MM-DD"),
         sub_type: 1,
         remark: null,
+      })
+    })
+
+    eventBus.subscribe("editDetail",(detail)=>{
+      this.setData({
+        amount: detail.amount,
+        type: detail.type,
+        date: detail.date,
+        sub_type: detail.sub_type,
+        remark: detail.remark,
+        id: detail._id,
+
+        showAddModal: true
       })
     })
   },
@@ -122,7 +136,8 @@ Component({
         showAddModal: false
       });
 
-      this.triggerEvent("add", {
+      this.triggerEvent( this.data.id ? "edit":"add", {
+        id: this.data.id,
         amount: this.data.amount,
         type: this.data.type,
         date: this.data.date,

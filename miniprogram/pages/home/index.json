@@ -2,7 +2,10 @@
   "usingComponents": {
     "add-record": "../../components/add-record/index",
     "types-picker": "../../components/types-picker/index",
-    "month-picker": "../../components/month-picker/index"
+    "month-picker": "../../components/month-picker/index",
+    "mp-slideview": "weui-miniprogram/slideview/slideview",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell"
   },
   "disableScroll": true
 }
