@@ -16,16 +16,24 @@ Page({
   onChooseAvatar(e) {
     const { avatarUrl } = e.detail 
     const userInfo = app.store.getState().userInfo
-    app.store.setState({
-      userInfo:{
-        ...userInfo,
-        avatar_url: avatarUrl
+    wx.cloud.uploadFile({
+      cloudPath: `${userInfo._id}_AVATAR.jpg`,
+      filePath: avatarUrl,
+      success: (res)=>{
+        app.store.setState({
+          userInfo:{
+            ...userInfo,
+            avatar_url: res.fileID
+          }
+        })
+        post("user","update",{
+          avatar_url: res.fileID,
+          nickname: userInfo.nickname
+        })
       }
     })
-    post("user","update",{
-      avatar_url: avatarUrl,
-      nickname: userInfo.nickname
-    })
+    
+   
   },
   onChangeNickname(e){
     const { value } = e.detail;
