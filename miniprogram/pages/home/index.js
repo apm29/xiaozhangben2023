@@ -72,10 +72,10 @@ Page({
   },
 
   watch: {
-    
+
   },
 
-  handleMonthChange(e){
+  handleMonthChange(e) {
     //手动修改月份
     this.setData({
       page: 1,
@@ -92,16 +92,18 @@ Page({
     this.getDetail()
   },
 
-  handleScroll(e){
-    const { scrollTop } = e.detail;
+  handleScroll(e) {
+    const {
+      scrollTop
+    } = e.detail;
     this.setData({
       liveScrollTop: scrollTop
     })
-    wx.createSelectorQuery().select('#date-list').boundingClientRect((rect)=>{
-      wx.createSelectorQuery().selectAll('.date-item').boundingClientRect((items)=>{
-        items.sort((a,b)=>{
-          return a.top-b.top
-        }).forEach((item)=>{
+    wx.createSelectorQuery().select('#date-list').boundingClientRect((rect) => {
+      wx.createSelectorQuery().selectAll('.date-item').boundingClientRect((items) => {
+        items.sort((a, b) => {
+          return a.top - b.top
+        }).forEach((item) => {
 
           if (item.top < rect.top && item.bottom > rect.top) {
             // console.log('可见的最顶部的日期为：' + item.dataset.date);
@@ -124,14 +126,6 @@ Page({
       month: defaultMonth,
       refreshing: true
     })
-    console.log(
-      "refresh ==> ",
-      "total:",this.data.total, 
-      "raw size:",this.data.detailRawList.length,
-      "month:",this.data.month,
-      "page:",this.data.page,
-      "total:",this.data.total
-    );
     this.getDetail().finally(() => {
       this.setData({
         refreshing: false
@@ -145,18 +139,8 @@ Page({
     if (this.data.loading) {
       return
     }
-
-    
-    console.log(
-      "load more ==> ",
-      "total:",this.data.total, 
-      "raw size:",this.data.detailRawList.filter(it=>it.month === this.data.month).length,
-      "month:",this.data.month,
-      "page:",this.data.page,
-      "total:",this.data.total
-    );
     //本月没有更多了
-    if (this.data.total <= this.data.detailRawList.filter(it=>it.month === this.data.month).length) {
+    if (this.data.total <= this.data.detailRawList.filter(it => it.month === this.data.month).length) {
       this.setData({
         month: dayjs(this.data.month).subtract(1, "month").format("YYYY-MM"),
       })
@@ -180,10 +164,10 @@ Page({
       type_id: this.data.typeId,
       page_no: this.data.page,
       page_size: this.data.size
-    },{
+    }, {
       showLoading: false
     });
-   
+
 
     //处理显示
     const old = res.data.map(it => {
@@ -222,6 +206,13 @@ Page({
 
 
   handleTypeChange(e) {
-
+    //手动修改类型
+    this.setData({
+      page: 1,
+      detailRawList: [],
+      subTypeId: e.detail.subTypeId,
+      typeId: e.detail.typeId,
+    });
+    this.getDetail();
   },
 })
