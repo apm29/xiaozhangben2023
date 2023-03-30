@@ -248,7 +248,7 @@ Page({
       this.getDetail()
     })
   },
-  handleEditDetail(e){
+  handleEditDetail(e) {
     console.log("编辑明细");
     post("detail", "edit", e.detail, {
       showSuccess: true
@@ -267,13 +267,31 @@ Page({
 
   handleSlideDetail(e) {
     const detailItem = e.currentTarget.dataset.detail
-    if(e.detail.index === 0){
+    if (e.detail.index === 0) {
       //编辑
-      eventBus.publish("editDetail",detailItem);
-    } else if(e.detail.index === 1) {
+      eventBus.publish("editDetail", detailItem);
+    } else if (e.detail.index === 1) {
       //删除
+      this.deleteDetailItem(detailItem._id)
     }
     console.log(e);
+  },
+
+  deleteDetailItem(id) {
+    post("detail", "delete", {
+      id: id
+    }, {
+      showSuccess: true
+    }).then(() => {
+      this.setData({
+        //刷新
+        page: 1,
+        detailRawList: [],
+        month: null,
+        hasMore: true
+      });
+      this.getDetail()
+    })
   }
 
 

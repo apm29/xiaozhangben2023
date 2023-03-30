@@ -36,6 +36,7 @@ exports.main = async (event, context) => {
       creator_openid: wxContext.OPENID,
       account_book_id: event.payload.account_book_id,
       date:  _.lt(nextMonth),
+      deleted: false
     }
     if (type_id) {
       whereArgs.type = _.eq(type_id)

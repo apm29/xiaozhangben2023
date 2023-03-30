@@ -3,6 +3,7 @@ const cloud = require('wx-server-sdk')
 const create = require("./create")
 const edit = require("./edit")
 const query = require("./query")
+const deleteModule = require("./delete")
 const queryMonthTotal = require("./query-month-total")
 
 cloud.init({
@@ -19,6 +20,8 @@ exports.main = async (event, context) => {
       return await edit.main(event, context);
     case 'query':
       return await query.main(event, context);
+    case 'delete':
+      return await deleteModule.main(event, context);
     case 'query-month-total':
       return await queryMonthTotal.main(event, context);
   }
