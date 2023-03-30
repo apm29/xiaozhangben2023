@@ -1,0 +1,8 @@
+<!--components/tab/index.wxml-->
+<scroll-view class="tab-scrollable-wrapper" scroll-x scroll-with-animation="true">
+  <!-- <view class="flex gap-3 justify-center items-center py-2" > -->
+    <view bindtap="handleSelectTab" data-value="{{item.value}}" wx:for="{{tabs}}" wx:key="index" class="tab-item {{item.value === value ?'active':''}}  ml-1 rounded bg-transparent text-sm text-gray-200 text-opacity-50 px-3 py-1 inline-block transition-all">
+      {{item.name}}
+    </view>
+  <!-- </view> -->
+</scroll-view>

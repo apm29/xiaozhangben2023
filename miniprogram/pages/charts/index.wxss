@@ -4,7 +4,11 @@ ec-canvas {
   height: 100%;
 }
 
-.container {
+.top-container{
+  min-height: 200rpx;
+}
+
+.echarts-container {
   width: 100%;
   height: 400rpx;
 }

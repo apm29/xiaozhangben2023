@@ -1,6 +1,9 @@
 {
   "usingComponents": {
-    "ec-canvas":"../../components/ec-canvas/ec-canvas"
+    "ec-canvas":"../../components/ec-canvas/ec-canvas",
+    "types-picker": "../../components/types-picker/index",
+    "month-picker": "../../components/month-picker/index",
+    "tab":"../../components/tab/index"
   },
   "navigationBarBackgroundColor": "#35AA62"
 }

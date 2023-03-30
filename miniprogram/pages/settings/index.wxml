@@ -1,6 +1,6 @@
 <view data-weui-theme="{{theme}}">
-  <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
-    <image class="avatar border border-gray-300 border-solid rounded-full" src="{{$state.userInfo.avatar_url}}"></image>
+  <button class="avatar-wrapper shadow-lg" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+    <image class="avatar border border-gray-300 border-solid" src="{{$state.userInfo.avatar_url}}"></image>
   </button>
   <mp-form>
     <mp-cells>

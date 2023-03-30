@@ -1,0 +1,21 @@
+/* components/tab/index.wxss */
+@import "../../windi.wxss";
+
+.tab-scrollable-wrapper{
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  height: 100rpx;
+  box-sizing: border-box;
+  padding:  15rpx 15rpx;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+.active{
+  background-color: #ffffff33;
+  color: #fff;
+}

@@ -62,7 +62,9 @@ exports.main = async (event, context) => {
       success: true,
       msg: "获取月度小结成功",
       data: {
-        expenditure,income,unincluded
+        expenditure:expenditure.toFixed(2),
+        income:income.toFixed(2),
+        unincluded:unincluded.toFixed(2)
       }
     };
   } catch (e) {

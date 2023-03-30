@@ -10,6 +10,12 @@ Component({
   properties: {
     month:{
       type:String
+    },
+    icon: {
+      type:String
+    },
+    divider: {
+      type:String
     }
   },
 

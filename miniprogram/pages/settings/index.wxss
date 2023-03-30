@@ -1,15 +1,17 @@
 .avatar-wrapper {
-  padding: 0;
-  width: 56px !important;
-  border-radius: 8px;
+  padding: 0rpx;
+  width: 76px !important;
+  height: 76px !important;
   margin-top: 40px;
   margin-bottom: 40px;
+  box-sizing: border-box;
+  border: seashell solid 10rpx !important;
 }
 
 .avatar {
-  display: block;
-  width: 56px;
-  height: 56px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .container {

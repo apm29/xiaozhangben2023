@@ -1,5 +1,8 @@
 // pages/charts/index.js
 import * as echarts from '../../components/ec-canvas/echarts';
+const dayjs = require("dayjs").default;
+const { post } =require("../../utils/remote")
+const defaultMonth = dayjs().format("YYYY-MM")
 const computedBehavior = require("miniprogram-computed").behavior
 const colorDict = {
   1:"#35AA62",//支出
@@ -15,20 +18,35 @@ Page({
    */
   data: {
     type: 1,
+    typeDict:[{name:"支出",value:1},{name:"收入",value:2}],
     color: "#35AA62",
     ec: {
       lazyLoad: true
-    }
+    },
+    month: defaultMonth,
+    loadingSummary: false,
+    monthSummary: {
+      expenditure: 0,
+      income: 0,
+      unincluded: 0,
+    },
   },
 
-  // watch:{
-  //   type(type){
-  //     wx.setNavigationBarColor({
-  //       backgroundColor: colorDict[type],
-  //       frontColor: '#fff',
-  //     })
-  //   }
-  // },
+  watch:{
+    type(type){
+      console.log(type);
+      this.setData({
+        color: colorDict[type]
+      });
+      wx.setNavigationBarColor({
+        backgroundColor: colorDict[type],
+        frontColor: '#ffffff',
+        animation:{
+          duration: 300
+        }
+      })
+    }
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -38,7 +56,24 @@ Page({
   },
 
   onReady(){
-    this.initCharts()
+    this.initCharts();
+    this.getMonthSummary();
+  },
+
+  getMonthSummary() {
+    this.setData({
+      loadingSummary: true,
+    })
+    post("detail", "query-month-total", {
+      month: this.data.month
+    }, {
+      showLoading: false
+    }).then(res => {
+      this.setData({
+        loadingSummary: false,
+        monthSummary: res.data
+      })
+    })
   },
 
   initCharts(){

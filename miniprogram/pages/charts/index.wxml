@@ -1,6 +1,27 @@
 <!--pages/charts/index.wxml-->
 <authorization>
-  <view class="container">
+  <view class="top-container  px-4 py-2" style="background-color:{{color}}; transition: all linear 0.3s;">
+    <view class="flex items-center">
+      <month-picker month="{{ month }}" divider=" " icon="ic:baseline-calendar-today"></month-picker>
+      <view class="flex-grow">
+      </view>
+      <tab model:value="{{type}}" tabs="{{typeDict}}"></tab>
+    </view>
+    <view wx:if="{{ !loadingSummary }}" class="text-4xl text-white py-2">
+      <view wx:if="{{type===1}}">
+        <text class="text-sm text-opacity-50 text-white ">共支出 </text> 
+        <text  class="text-18px font-bold text-opacity-50">¥</text>
+        {{ monthSummary.expenditure }} 
+      </view>
+      <view wx:elif="{{type===2}}">
+        <text class="text-sm text-opacity-50 text-white ">共收入 </text>
+        <text  class="text-18px font-bold text-opacity-50">¥</text>
+         {{ monthSummary.income }}
+      </view>
+    </view>
+    <svg-icon wx:else name="eos-icons:loading" size="1em" color="#ffffff"></svg-icon>
+  </view>
+  <view class="echarts-container">
     <ec-canvas id="echarts-container" canvas-id="echarts-canvas" ec="{{ ec }}"></ec-canvas>
   </view>
 </authorization>
