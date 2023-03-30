@@ -31,8 +31,10 @@ Component({
    */
   methods: {
     handleDateSelected(e){
+      const newValue = dayjs(e.detail.value).format("YYYY-MM");
+      this.triggerEvent("change",newValue)
       this.setData({
-        month: dayjs(e.detail.value).format("YYYY-MM")
+        month: newValue
       })
     }
   }

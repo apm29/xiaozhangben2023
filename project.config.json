@@ -34,7 +34,8 @@
     "packNpmManually": false,
     "packNpmRelationList": [],
     "minifyWXSS": true,
-    "showES6CompileOption": false
+    "showES6CompileOption": false,
+    "condition": false
   },
   "appid": "wxb980afecbaa5b6d2",
   "projectname": "我的记账猿",

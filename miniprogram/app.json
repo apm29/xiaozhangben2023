@@ -19,12 +19,7 @@
         "iconPath": "images/icons/exchange-cny-fill.png",
         "selectedIconPath": "images/icons/exchange-cny-fill-selected.png"
       },
-      {
-        "pagePath": "pages/charts/index",
-        "text": "图表",
-        "iconPath": "images/icons/funds-box-line.png",
-        "selectedIconPath": "images/icons/funds-box-line-selected.png"
-      },
+     
       {
         "pagePath": "pages/settings/index",
         "text": "设置",
