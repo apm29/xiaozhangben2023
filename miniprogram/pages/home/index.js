@@ -48,6 +48,12 @@ Page({
     ]
   },
 
+  monthSummaryCache: {},
+
+  clearMonthSummaryCache() {
+    this.monthSummaryCache = {}
+  },
+
   computed: {
     dayGroupedList(data) {
       const old = data.detailRawList;
@@ -100,17 +106,26 @@ Page({
     this.setData({
       loadingSummary: true,
     })
-    post("detail", "query-month-total", {
-      month: this.data.listTopMonth
-    }, {
-      showLoading: false
-    }).then(res => {
-      console.log(res);
+    const cache = this.monthSummaryCache[this.data.listTopMonth]
+    if (cache) {
       this.setData({
         loadingSummary: false,
-        monthSummary: res.data
+        monthSummary: cache
       })
-    })
+    } else {
+      post("detail", "query-month-total", {
+        month: this.data.listTopMonth
+      }, {
+        showLoading: false
+      }).then(res => {
+        console.log(res);
+        this.monthSummaryCache[this.data.listTopMonth] = res.data
+        this.setData({
+          loadingSummary: false,
+          monthSummary: res.data
+        })
+      })
+    }
   },
 
 
@@ -147,6 +162,7 @@ Page({
   // 下拉刷新
   handleRefresh() {
     console.log("下拉刷新");
+    this.clearMonthSummaryCache();
     this.setData({
       page: 1,
       detailRawList: [],
@@ -163,6 +179,7 @@ Page({
 
   handleTypeChange(e) {
     console.log("修改类型");
+    this.clearMonthSummaryCache();
     //手动修改类型
     this.setData({
       page: 1,
@@ -176,6 +193,7 @@ Page({
 
   handleMonthChange(e) {
     console.log("修改月份");
+    this.clearMonthSummaryCache();
     //手动修改月份
     this.setData({
       page: 1,
