@@ -7,5 +7,7 @@
     "expansion-panel":"../../components/expansion-panel/index"
   },
   "navigationBarBackgroundColor": "#1296db",
-  "backgroundColor": "#1296db"
+  "backgroundColor": "#1296db",
+  "backgroundTextStyle": "light",
+  "enablePullDownRefresh": true
 }

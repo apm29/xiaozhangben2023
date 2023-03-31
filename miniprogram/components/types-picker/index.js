@@ -39,10 +39,20 @@ Component({
         [2]: accountBook.income_types,
         [3]: accountBook.unincluded_types
       }
+      const typeNames = {
+        [1]: "全部支出",
+        [2]: "全部收入",
+        [3]: "全部未计入类型",
+      }
       const types = typeDict[data.selectedTypeId] || []
-
-      const nameObj = types.find(it=> it.id === data.selectedSubTypeId) || { name: "全部类型" };
-      return nameObj.name
+      if(data.selectedTypeId !== null && data.selectedSubTypeId !== null){
+        const nameObj = types.find(it=> it.id === data.selectedSubTypeId);
+        return nameObj.name
+      } if(data.selectedTypeId === null && data.selectedSubTypeId === null) {
+        return "全部类型"
+      } else {
+        return typeNames[data.selectedTypeId]
+      }
     }
   },
 

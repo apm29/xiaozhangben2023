@@ -164,6 +164,15 @@ Page({
 
   },
 
+  onPullDownRefresh(){
+    Promise.all([
+      this.getMonthSummary(),
+      this.getMonthComposition()
+    ]).then(()=>{
+      wx.stopPullDownRefresh()
+    })
+  },
+
   async onShow() {
     this.getMonthSummary();
     this.getMonthComposition();
@@ -173,7 +182,7 @@ Page({
     this.setData({
       loadingSummary: true,
     })
-    post("detail", "query-month-total", {
+    return post("detail", "query-month-total", {
       month: this.data.month
     }, {
       showLoading: false
@@ -189,7 +198,7 @@ Page({
     this.setData({
       loadingComposition: true,
     })
-    post("detail", "query-month-composition", {
+    return post("detail", "query-month-composition", {
       month: this.data.month
     }, {
       showLoading: true

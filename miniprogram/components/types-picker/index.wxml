@@ -1,6 +1,7 @@
 <!--components/types-picker/index.wxml-->
 <view bindtap="handleShowModal" class="inline-flex text-sm items-center justify-center text-white text-opacity-80 px-2 py-1 border border-opacity-50 rounded border-solid border-white backdrop-filter backdrop-blur-sm bg-white bg-opacity-30 gap-2">
-  {{ selectedTypeName }} <text>|</text> <svg-icon class="inline-block" name="tabler:category" color="rgba(255,255,255,0.8)"></svg-icon>
+  {{ selectedTypeName }} <text>|</text>
+  <svg-icon class="inline-block" name="tabler:category" color="rgba(255,255,255,0.8)"></svg-icon>
 </view>
 
 <mp-half-screen-dialog show="{{showDialog}}" title="请选择类型">
@@ -9,7 +10,21 @@
       <view catchtap="handleSelectType" data-type="{{null}}" data-subtype="{{null}}" class="type-btn {{ selectedTypeId === null && selectedTypeId === null ? 'active':'' }}">
         全部类型
       </view>
+      <view>
+      </view>
+      <view>
+      </view>
+      <view catchtap="handleSelectType" class="type-btn  {{ selectedTypeId === 1 && selectedSubTypeId === null ? 'active':'' }}" data-type="{{1}}" data-subtype="{{ null }}">
+        全部支出
+      </view>
+      <view catchtap="handleSelectType" class="type-btn  {{ selectedTypeId === 2 && selectedSubTypeId === null ? 'active':'' }}" data-type="{{2}}" data-subtype="{{ null }}">
+        全部收入
+      </view>
+      <view catchtap="handleSelectType" class="type-btn  {{ selectedTypeId === 3 && selectedSubTypeId === null ? 'active':'' }}" data-type="{{3}}" data-subtype="{{ null }}">
+        全部未计入类型
+      </view>
     </view>
+
     <view class="text-xs text-gray-300 mb-4">
       支出
     </view>
@@ -17,6 +32,7 @@
       <view catchtap="handleSelectType" class="type-btn  {{ selectedTypeId === 1 && selectedSubTypeId === item.id ? 'active':'' }}" data-type="{{1}}" data-subtype="{{ item.id }}" wx:for="{{ $state.selectedBook.expend_types}}" wx:key="id">
         {{ item.name }}
       </view>
+
     </view>
     <view class="text-xs text-gray-300 mb-4">
       收入
@@ -25,6 +41,7 @@
       <view catchtap="handleSelectType" class="type-btn   {{ selectedTypeId === 2 && selectedSubTypeId === item.id ? 'active':'' }}" data-type="{{2}}" data-subtype="{{ item.id }}" wx:for="{{ $state.selectedBook.income_types}}" wx:key="id">
         {{ item.name }}
       </view>
+
     </view>
     <view class="text-xs text-gray-300 mb-4">
       不计入收支
@@ -33,6 +50,9 @@
       <view catchtap="handleSelectType" class="type-btn  {{ selectedTypeId === 3 && selectedSubTypeId === item.id ? 'active':'' }}" data-type="{{3}}" data-subtype="{{ item.id }}" wx:for="{{ $state.selectedBook.unincluded_types}}" wx:key="id">
         {{ item.name }}
       </view>
+
+    </view>
+    <view style="height: 200rpx;">
     </view>
   </scroll-view>
 </mp-half-screen-dialog>
