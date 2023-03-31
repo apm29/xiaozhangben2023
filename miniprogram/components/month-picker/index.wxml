@@ -1,6 +1,6 @@
 <!--components/month-picker/index.wxml-->
 
-<picker mode="date" fields="month" value="{{month}}" bindchange="handleDateSelected">
+<picker mode="date" fields="month" value="{{month}}" end="{{now}}" bindchange="handleDateSelected">
   <view class="picker" class="inline-flex text-sm items-center justify-center text-white text-opacity-80 px-2 py-1 gap-2">
     {{ formattedMonth }} <text>{{divider||'|'}}</text>
     <svg-icon class="inline-block" name="{{icon || 'mdi:menu-down'}}" color="rgba(255,255,255,0.8)"></svg-icon>
