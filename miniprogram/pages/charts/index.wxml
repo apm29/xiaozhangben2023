@@ -22,8 +22,26 @@
       </view>
       <svg-icon wx:else name="eos-icons:loading" size="1em" color="#ffffff"></svg-icon>
     </view>
+
+    <!-- 收支组成饼图 -->
     <view class="echarts-container">
       <ec-canvas id="echarts-container" canvas-id="echarts-canvas" ec="{{ ec }}"></ec-canvas>
+    </view>
+
+    <!-- 收支排名 -->
+    <view class="expend-income-rank-container px-4 py-2">
+      <view wx:for="{{monthCompositionTyped}}" wx:key="index" class="flex items-center text-sm gap-2 mb-2">
+        <view class="type-icon flex items-center justify-center p-1 rounded-full" style="background-color: {{ color + '30' }};">
+          <svg-icon name="{{item.type.sub_type_item.icon}}" color="{{color}}" size="40rpx"></svg-icon>
+        </view>
+        {{item.type.sub_type_item.name}}
+        <view class="amount-progress flex-grow">
+          <view class="rounded-full" style="background-color: {{ color + '90' }}; width: {{item.amount/monthCompositionMax*100 + '%'}}; height: 20rpx;" >
+          </view>
+        </view>
+        ¥{{item.amount}}
+        <svg-icon name="mdi:chevron-right"></svg-icon>
+      </view>
     </view>
   </view>
 </authorization>

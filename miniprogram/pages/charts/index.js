@@ -41,9 +41,20 @@ Page({
     monthComposition: []
   },
 
+  computed:{
+    monthCompositionMax(data){
+      return data.monthComposition.filter(it=>it.type.type === data.type)
+      .reduce((max,item)=>{
+        return max > item.amount ? max : item.amount
+      },0)
+    },
+    monthCompositionTyped(data){
+      return data.monthComposition.filter(it=>it.type.type === data.type)
+    }
+  },
+
   watch: {
     type(type) {
-      console.log(type);
       this.setData({
         color: colorDict[type]
       });
@@ -51,67 +62,86 @@ Page({
         backgroundColor: colorDict[type],
         frontColor: '#ffffff',
         animation: {
-          duration: 300
+          duration: 300,
+          timingFunc: "linear"
         }
       })
     },
     "type,monthComposition": function (type, monthComposition) {
+      // 获取组件
+      const ecComponent = this.selectComponent('#echarts-container');
+      ecComponent.init((canvas, width, height, dpr) => {
+        this.charts?.dispose();
+        // 获取组件的 canvas、width、height 后的回调函数
+        // 在这里初始化图表
+        const chart = echarts.init(canvas, null, {
+          width: width,
+          height: height,
+          devicePixelRatio: dpr // new
+        });
+        const raw = monthComposition.sort((a, b) => b.amount - a.amount).filter(it => it.type.type === type).map(it => {
+          return {
+            name: it.type.sub_type_item.name,
+            value: it.amount
+          }
+        });
+        const dataDetail = raw.slice(0, 6)
+        const dataOther = raw.slice(6).reduce((item, detail) => {
+          item.value += detail.value
+          return item
+        }, {
+          name: "其他",
+          value: 0
+        });
+        const data = raw.length > 6 ? [...dataDetail, dataOther] : dataDetail
+        chart.setOption({
+          backgroundColor: "#ffffff",
+          color: type === 1 ? [
+            "#1296dbff",
+            "#1296dbcc",
+            "#1296db99",
+            "#1296db66",
+            "#1296db33",
+            "#1296db11",
+          ] : [
+            "#DEA106ff",
+            "#DEA106cc",
+            "#DEA10699",
+            "#DEA10666",
+            "#DEA10633",
+            "#DEA10611",
+          ],
+          avoidLabelOverlap: false,
 
-      const raw = monthComposition.sort((a, b) => b.amount - a.amount).filter(it => it.type.type === type).map(it => {
-        return {
-          name: it.type.sub_type_item.name,
-          value: it.amount
-        }
-      });
-      const dataDetail = raw.slice(0, 6)
-      const dataOther = raw.slice(6).reduce((item, detail) => {
-        item.value += detail.value
-        return item
-      }, {
-        name: "其他",
-        value: 0
-      });
-      this.chart.setOption({
-        backgroundColor: "#ffffff",
-        color: type === 1 ? [
-          "#1296dbff",
-          "#1296dbcc",
-          "#1296db99",
-          "#1296db66",
-          "#1296db33",
-          "#1296db11",
-        ] : [
-          "#DEA106ff",
-          "#DEA106cc",
-          "#DEA10699",
-          "#DEA10666",
-          "#DEA10633",
-          "#DEA10611",
-        ],
-        avoidLabelOverlap: false,
+          series: [{
+            type: "pie",
+            center: ['50%', '50%'],
+            radius: ['30%', '60%'],
+            itemStyle: {
+              borderRadius: 1,
+              borderColor: '#ffffff',
+              borderWidth: 2
+            },
+            label: {
+              formatter: "{b} {d}%",
+              color: "#6d6d6d"
+            },
+            labelLine: {
+              showAbove: true,
+              lineStyle: {
+                color: "#3d3d3d50"
+              }
+            },
+            data: data
+          }]
+        })
+        // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
+        this.chart = chart;
+        // 注意这里一定要返回 chart 实例，否则会影响事件处理等
 
-        series: [{
-          type: "pie",
-          center: ['50%', '50%'],
-          radius: ['30%', '60%'],
-          itemStyle: {
-            borderRadius: 1,
-            borderColor: '#ffffff',
-            borderWidth: 2
-          },
-          label: {
-            formatter: "{b} {d}%",
-            color: "#6d6d6d"
-          },
-          labelLine: {
-            showAbove: true,
-            lineStyle: {
-              color: "#3d3d3d50"
-            }
-          },
-          data: [...dataDetail, dataOther]
-        }]
-      })
+        return chart;
+      });
+
     },
     month() {
       this.getMonthSummary();
@@ -126,8 +156,7 @@ Page({
 
   },
 
-  async onReady() {
-    await this.initCharts();
+  async onShow() {
     this.getMonthSummary();
     this.getMonthComposition();
   },
@@ -155,7 +184,7 @@ Page({
     post("detail", "query-month-composition", {
       month: this.data.month
     }, {
-      showLoading: false
+      showLoading: true
     }).then(res => {
       console.log(res);
       this.setData({
@@ -165,32 +194,6 @@ Page({
     })
   },
 
-  initCharts() {
-    return new Promise((resolve) => {
-      // 获取组件
-      const ecComponent = this.selectComponent('#echarts-container');
-      ecComponent.init((canvas, width, height, dpr) => {
-        console.log(arguments);
-        // 获取组件的 canvas、width、height 后的回调函数
-        // 在这里初始化图表
-        const chart = echarts.init(canvas, null, {
-          width: width,
-          height: height,
-          devicePixelRatio: dpr // new
-        });
-        const option = {
-          backgroundColor: "transparent",
-          series: []
-        };
-        chart.setOption(option);
-        // 将图表实例绑定到 this 上，可以在其他成员函数（如 dispose）中访问
-        this.chart = chart;
-        // 注意这里一定要返回 chart 实例，否则会影响事件处理等
-        resolve()
-        return chart;
-      });
-    })
-  },
 
   onUnload() {
     this.charts?.dispose()
