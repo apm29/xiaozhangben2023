@@ -49,23 +49,31 @@ Page({
       },0)
     },
     monthCompositionTyped(data){
-      return data.monthComposition.filter(it=>it.type.type === data.type)
+      return data.monthComposition.filter(it=>it.type.type === data.type).map(it=>({
+        ...it,
+        amountText: it.amount.toFixed(2)
+      }))
     }
   },
 
   watch: {
     type(type) {
-      this.setData({
-        color: colorDict[type]
-      });
+      const color = colorDict[type]
+      
+      wx.setBackgroundColor({
+        backgroundColor: color
+      })
       wx.setNavigationBarColor({
-        backgroundColor: colorDict[type],
+        backgroundColor: color,
         frontColor: '#ffffff',
         animation: {
           duration: 300,
           timingFunc: "linear"
         }
       })
+      this.setData({
+        color: color
+      });
     },
     "type,monthComposition": function (type, monthComposition) {
       // 获取组件

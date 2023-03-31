@@ -3,8 +3,9 @@
     "ec-canvas":"../../components/ec-canvas/ec-canvas",
     "types-picker": "../../components/types-picker/index",
     "month-picker": "../../components/month-picker/index",
-    "tab":"../../components/tab/index"
+    "tab":"../../components/tab/index",
+    "expansion-panel":"../../components/expansion-panel/index"
   },
   "navigationBarBackgroundColor": "#1296db",
-  "backgroundColor": "#ffffff"
+  "backgroundColor": "#1296db"
 }

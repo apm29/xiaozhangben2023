@@ -1,2 +1,2 @@
 <!--此处写预加载的windicss或者无法从class生成的windicss-->
-<text class="bg-green-500 bg-green-600 bg-gray-200 bg-opacity-100">PRELOAD</text>
+<text class="bg-green-500 bg-green-600 bg-gray-200 bg-opacity-100 static absolute">PRELOAD</text>
