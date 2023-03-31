@@ -264,6 +264,7 @@ Page({
         hasMore: true
       });
       this.clearMonthSummaryCache()
+      this.getMonthSummary()
       this.getDetail()
     })
   },
@@ -281,6 +282,7 @@ Page({
         hasMore: true
       });
       this.clearMonthSummaryCache()
+      this.getMonthSummary()
       this.getDetail()
     })
   },
@@ -311,6 +313,7 @@ Page({
         hasMore: true
       });
       this.clearMonthSummaryCache()
+      this.getMonthSummary()
       this.getDetail()
     })
   }
