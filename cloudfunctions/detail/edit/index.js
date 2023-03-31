@@ -18,6 +18,7 @@ exports.main = async (event, context) => {
         msg: `未找到明细`
       };
     }
+    event.payload.amount = parseFloat(event.payload.amount)
     if(!event.payload.amount){
       return {
         success: false,

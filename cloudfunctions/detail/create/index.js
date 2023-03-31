@@ -12,6 +12,7 @@ exports.main = async (event, context) => {
     // 创建集合
     const wxContext = cloud.getWXContext()
     const detail = db.collection('detail');
+    event.payload.amount = parseFloat(event.payload.amount)
     if(!event.payload.amount){
       return {
         success: false,

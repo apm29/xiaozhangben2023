@@ -1,4 +1,4 @@
-const types = require("../dict/types")
+const types = require("./types")
 function processIconAndName(
   detail,
   expenditure_types,

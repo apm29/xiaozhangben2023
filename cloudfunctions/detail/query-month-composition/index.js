@@ -10,6 +10,7 @@ cloud.init({
 
 const db = cloud.database();
 const _ = db.command
+const $ = db.command.aggregate
 // 创建集合云函数入口函数
 exports.main = async (event, context) => {
   try {
@@ -25,49 +26,34 @@ exports.main = async (event, context) => {
     }).get()
 
     const details = db.collection('detail');
-    const page_size = event.payload.page_size || 20
-    const page_no = event.payload.page_no || 1
-    const type_id = event.payload.type_id
-    const sub_type_id = event.payload.sub_type_id
+
     let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs()
     let nextMonth = dayjs(month).add(1, "month").format("YYYY-MM")
 
     const whereArgs = {
       creator_openid: wxContext.OPENID,
       account_book_id: event.payload.account_book_id,
-      date:  _.lt(nextMonth),
+      date: _.lt(nextMonth).gte(month),
       deleted: false
     }
-    if (type_id) {
-      whereArgs.type = _.eq(type_id)
-    }
-    if (sub_type_id) {
-      whereArgs.sub_type = _.eq(sub_type_id)
-    }
-    const whereQuery = details.where(whereArgs)
-      .orderBy("date", "desc");
-    const {
-      data
-    } = await whereQuery
-      .skip((page_no - 1) * page_size)
-      .limit(page_size)
-      .get()
 
-    const { total } = await whereQuery.count()
-
-    //求返回的数据包含的月份并排序
-    const months = data.reduce((months,item)=>{
-      const itemMonth = dayjs(item.date).format("YYYY-MM")
-      if(!months.includes(itemMonth)){
-        months.push(itemMonth)
-      }
-      return months;
-    },[]).sort((a,b)=> dayjs(a).isBefore(b)?1:-1)
+    const aggregateResult = await details
+      .aggregate()
+      .match(whereArgs)
+      .group({
+        _id: {
+          type: '$type',
+          sub_type: '$sub_type',
+        },
+        amount: $.sum('$amount'),
+        count: $.sum(1)
+      })
+      .end()
 
     //处理类型名称
-    data.forEach(detail => {
+    aggregateResult.list.forEach(detail => {
       return processIconAndName(
-        detail,
+        detail._id,
         currentBook.expend_types,
         currentBook.income_types,
         currentBook.unincluded_types,
@@ -75,12 +61,13 @@ exports.main = async (event, context) => {
     })
     return {
       success: true,
-      msg: "获取明细成功",
-      data,
-      total,
-      page_no,
-      page_size,
-      months
+      msg: "获取月度分类统计成功",
+      data: aggregateResult.list.map(it=>{
+        return {
+          ...it,
+          type:it._id
+        }
+      })
     };
   } catch (e) {
     // 这里catch到的是该collection已经存在，从业务逻辑上来说是运行成功的，所以catch返回success给前端，避免工具在前端抛出异常

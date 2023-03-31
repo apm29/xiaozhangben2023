@@ -22,7 +22,7 @@ Page({
     month: null,
     listTopMonth: defaultMonth,
     page: 1,
-    size: 15,
+    size: 50,
     total: 0,
     refreshing: false,
     loading: false,
