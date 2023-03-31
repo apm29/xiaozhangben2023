@@ -29,7 +29,7 @@
     </view>
 
     <!-- 收支排名 -->
-    <view wx:if="{!monthCompositionTyped || !monthCompositionTyped.length}}" class="text-gray-500 text-center text-xs">
+    <view wx:if="{{!monthCompositionTyped || !monthCompositionTyped.length}}" class="text-gray-500 text-center text-xs">
       暂无记录
     </view>
     <expansion-panel wx:else>
