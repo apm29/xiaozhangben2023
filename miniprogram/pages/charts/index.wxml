@@ -29,7 +29,10 @@
     </view>
 
     <!-- 收支排名 -->
-    <expansion-panel>
+    <view wx:if="{!monthCompositionTyped || !monthCompositionTyped.length}}" class="text-gray-500 text-center text-xs">
+      暂无记录
+    </view>
+    <expansion-panel wx:else>
       <view class="expend-income-rank-container px-4 py-2">
         <view wx:for="{{monthCompositionTyped}}" wx:key="index" class="flex items-center text-sm gap-2 mb-2">
           <view class="type-icon flex items-center justify-center p-1 rounded-full" style="background-color: {{ color + '30' }};">
