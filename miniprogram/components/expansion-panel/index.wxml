@@ -1,12 +1,16 @@
 <!--components/expansion-panel/index.wxml-->
-<view class="expansion-panel relative overflow-hidden" style="max-height:{{ internalValue ? '': (maxHeight || 500) }}rpx">
-  <slot></slot>
-  <view class="expansion-handle {{ internalValue ? 'static':'absolute' }} bottom-0 bg-gradient-to-t from-white to-transparent w-full flex justify-center items-center text-xs gap-1 text-gray-500" style="height: 60rpx;" catchtap="handleExpand">
-   <block wx:if="{{!internalValue}}">
-    展开更多 <svg-icon color="#3d3d3d90" name="mdi:chevron-down" size="16px"></svg-icon>
-   </block>
-   <block wx:else>
-    收起 <svg-icon color="#3d3d3d90" name="mdi:chevron-up" size="16px"></svg-icon>
-   </block>
+<view class="expansion-panel relative overflow-hidden" style="max-height:{{ internalValue ? '': (maxHeight || defaultHeight) }}rpx">
+  <view class="expansion-content">
+    <slot></slot>
   </view>
+  <block wx:if="{{heightOverflow}}">
+    <view class="expansion-handle {{ internalValue ? 'static':'absolute' }} bottom-0 bg-gradient-to-t from-white to-transparent w-full flex justify-center items-center text-xs gap-1 text-gray-500" style="height: 60rpx;" catchtap="handleExpand">
+      <block wx:if="{{!internalValue}}">
+        展开更多 <svg-icon color="#3d3d3d90" name="mdi:chevron-down" size="16px"></svg-icon>
+      </block>
+      <block wx:else>
+        收起 <svg-icon color="#3d3d3d90" name="mdi:chevron-up" size="16px"></svg-icon>
+      </block>
+    </view>
+  </block>
 </view>
