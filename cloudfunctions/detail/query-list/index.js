@@ -76,14 +76,16 @@ exports.main = async (event, context) => {
     if (remark) {
       whereArgs.remark = _.eq(remark);
     }
-  
-  
+
+
     let whereQuery = details.where(whereArgs)
     orderBy?.forEach((_, index) => {
       whereQuery.orderBy(orderBy[index], order[index])
     });
 
-    const { total } = await whereQuery.count()
+    const {
+      total
+    } = await whereQuery.count()
     const {
       data
     } = await whereQuery
@@ -91,6 +93,15 @@ exports.main = async (event, context) => {
       .limit(page_size)
       .get()
 
+    //处理类型名称
+    data.forEach(detail => {
+      return processIconAndName(
+        detail,
+        currentBook.expend_types,
+        currentBook.income_types,
+        currentBook.unincluded_types,
+      )
+    })
 
     return {
       success: true,
