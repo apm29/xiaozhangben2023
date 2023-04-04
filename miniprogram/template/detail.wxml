@@ -1,0 +1,19 @@
+<template name="detail">
+  <view class="flex gap-4 items-center bg-white px-3 py-2" style="border-bottom: solid 3rpx rgba(200, 200, 200, 0.5);">
+    <view class="w-8 h-8 rounded-full flex items-center justify-center" style="background-color: {{ item.bgcolor }}; color: {{ item.color }}">
+      <svg-icon name="{{item.sub_type_item.icon}}" color="{{ item.color }}" size="1.25em"></svg-icon>
+    </view>
+    <view class="flex-grow">
+      <view class="flex text-sm font-light">
+        {{ item.sub_type_item.name }}
+        <view class="flex-grow"></view>
+        <view class="text-normal font-normal {{ item.type === 2 ?'text-yellow-500':''}}">
+          {{ item.type === 1 ? '-': item.type === 2 ? '+' : '' }}{{ item.amount }}
+        </view>
+      </view>
+      <view class="text-xs text-gray-400 flex">
+        {{ item.hour_minute }} <view class="flex-grow"></view> {{ item.remark || '' }}
+      </view>
+    </view>
+  </view>
+</template>

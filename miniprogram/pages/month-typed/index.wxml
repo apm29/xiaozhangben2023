@@ -1,0 +1,5 @@
+<!--pages/month-typed/index.wxml-->
+<import src="../../template/detail.wxml" />
+<block wx:for="{{data}}">
+  <template is="detail" data="{{item}}"/>
+</block>

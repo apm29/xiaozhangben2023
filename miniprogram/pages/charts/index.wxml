@@ -34,7 +34,7 @@
     </view>
     <expansion-panel wx:else data="{{monthCompositionTyped}}">
       <view class="expend-income-rank-container px-4 py-2">
-        <view wx:for="{{monthCompositionTyped}}" wx:key="index" class="flex items-center text-sm gap-2 mb-2">
+        <view wx:for="{{monthCompositionTyped}}" wx:key="index" catchtap="handleViewTyped" data-sub-type="{{item.type.sub_type_item.id}}" class="flex items-center text-sm gap-2 mb-2">
           <view class="type-icon flex items-center justify-center p-1 rounded-full" style="background-color: {{ color + '30' }};">
             <svg-icon name="{{item.type.sub_type_item.icon}}" color="{{color}}" size="40rpx"></svg-icon>
           </view>

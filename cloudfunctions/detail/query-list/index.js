@@ -36,8 +36,8 @@ exports.main = async (event, context) => {
     let nextMonth = month ? dayjs(month).add(1, "month").format("YYYY-MM") : null;
 
     //类型指定
-    const type_id = event.payload.type_id;
-    const sub_type_id = event.payload.sub_type_id;
+    const type_id = parseInt(event.payload.type_id);
+    const sub_type_id = parseInt(event.payload.sub_type_id);
 
     //remark指定
     const remark = event.payload.remark;

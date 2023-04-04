@@ -9,7 +9,8 @@
     "pages/home/index",
     "pages/charts/index",
     "pages/settings/index",
-    "pages/preload/index"
+    "pages/preload/index",
+    "pages/month-typed/index"
   ],
   "tabBar": {
     "list": [
@@ -48,6 +49,6 @@
   "style": "v2",
   "lazyCodeLoading": "requiredComponents",
   "useExtendedLib": {
-    "weui":true
+    "weui": true
   }
 }

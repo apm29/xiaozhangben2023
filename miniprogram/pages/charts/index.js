@@ -6,10 +6,7 @@ const {
 } = require("../../utils/remote")
 const defaultMonth = dayjs().format("YYYY-MM")
 const computedBehavior = require("miniprogram-computed").behavior
-const colorDict = {
-  1: "#1296db", //支出
-  2: "#DEA106", //收入
-}
+const { colorDict } = require("../../dict/color")
 
 Page({
 
@@ -214,6 +211,17 @@ Page({
 
   onUnload() {
     this.charts?.dispose()
+  },
+
+  handleViewTyped(e){
+    const subType = e.currentTarget.dataset.subType;
+    const type = this.data.type;
+    const month = this.data.month;
+    wx.navigateTo({
+      url: `/pages/month-typed/index?type=${type}&subType=${subType}&month=${month}`,
+      fail:(err)=>console.log(err)
+    })
   }
+
 
 })
