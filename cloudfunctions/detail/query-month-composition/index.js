@@ -27,7 +27,7 @@ exports.main = async (event, context) => {
 
     const details = db.collection('detail');
 
-    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs()
+    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs().format("YYYY-MM")
     let nextMonth = dayjs(month).add(1, "month").format("YYYY-MM")
 
     const whereArgs = {

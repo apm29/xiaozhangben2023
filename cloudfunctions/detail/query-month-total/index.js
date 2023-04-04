@@ -25,7 +25,7 @@ exports.main = async (event, context) => {
   
     const type_id = event.payload.type_id
     const sub_type_id = event.payload.sub_type_id
-    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs()
+    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs().format("YYYY-MM")
     let nextMonth = dayjs(month).add(1, "month").format("YYYY-MM")
 
     const whereArgs = {
