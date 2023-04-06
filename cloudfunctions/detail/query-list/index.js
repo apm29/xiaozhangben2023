@@ -9,13 +9,13 @@ cloud.init({
 });
 
 const db = cloud.database();
-const _ = db.command
-const $ = db.command.aggregate
+const _ = db.command;
+const $ = db.command.aggregate;
 // 按条件查询
 exports.main = async (event, context) => {
   try {
     // 获取账本
-    const wxContext = cloud.getWXContext()
+    const wxContext = cloud.getWXContext();
 
 
     const accountBook = db.collection('account-book');
@@ -53,7 +53,7 @@ exports.main = async (event, context) => {
     if (order && !Array.isArray(order)) {
       order = [order]
     }
-    if (orderBy?.length != order?.length) {
+    if (orderBy && order && orderBy.length != order.length) {
       return {
         success: false,
         msg: "请提供正确的排序字段"
@@ -79,7 +79,7 @@ exports.main = async (event, context) => {
 
 
     let whereQuery = details.where(whereArgs)
-    orderBy?.forEach((_, index) => {
+    orderBy && orderBy.forEach((_, index) => {
       whereQuery.orderBy(orderBy[index], order[index])
     });
 

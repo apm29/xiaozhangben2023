@@ -7,6 +7,7 @@ const deleteModule = require("./delete")
 const queryMonthTotal = require("./query-month-total")
 const queryMonthComposition = require("./query-month-composition")
 const queryList = require('./query-list')
+
 cloud.init({
   env: cloud.DYNAMIC_CURRENT_ENV
 }) // 使用当前云环境
@@ -31,10 +32,10 @@ exports.main = async (event, context) => {
       return await queryList.main(event, context);
 
     default:
-      return {
+      return ({
         success: false,
         msg: "未找到请求内容",
         data: null
-      };
+      });
   }
 }

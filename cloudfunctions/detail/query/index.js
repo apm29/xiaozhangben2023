@@ -25,12 +25,12 @@ exports.main = async (event, context) => {
     }).get()
 
     const details = db.collection('detail');
-    const page_size = event.payload.page_size || 20
-    const page_no = event.payload.page_no || 1
-    const type_id = event.payload.type_id
-    const sub_type_id = event.payload.sub_type_id
-    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs()
-    let nextMonth = dayjs(month).add(1, "month").format("YYYY-MM")
+    const page_size = event.payload.page_size || 20;
+    const page_no = event.payload.page_no || 1;
+    const type_id = event.payload.type_id;
+    const sub_type_id = event.payload.sub_type_id;
+    let month = event.payload.month ? dayjs(event.payload.month).format("YYYY-MM") : dayjs().format("YYYY-MM");
+    let nextMonth = dayjs(month).add(1, "month").format("YYYY-MM");
 
     const whereArgs = {
       creator_openid: wxContext.OPENID,
@@ -46,6 +46,7 @@ exports.main = async (event, context) => {
     }
     const whereQuery = details.where(whereArgs)
       .orderBy("date", "desc");
+
     const {
       data
     } = await whereQuery

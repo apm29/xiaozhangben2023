@@ -22,6 +22,7 @@ function post(
     topic,
     payload
   }).then(res => {
+    console.log(res);
     if (options.showSuccess && res.result.success) {
       wx.showToast({
         title: res.result.msg || "成功",
@@ -39,7 +40,7 @@ function post(
     console.error(err);
     if (options.showError) {
       wx.showToast({
-        title: err,
+        title: err?.errMsg ?? err.message ?? err,
         icon: "error"
       })
     }

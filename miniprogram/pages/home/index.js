@@ -124,6 +124,8 @@ Page({
           loadingSummary: false,
           monthSummary: res.data
         })
+      }).catch(err=>{
+        console.log(err);
       })
     }
   },

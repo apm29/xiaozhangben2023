@@ -12,7 +12,7 @@
         </view>
       </view>
       <view class="text-xs text-gray-400 flex">
-        {{ item.hour_minute }} <view class="flex-grow"></view> {{ item.remark || '' }}
+        {{ item.date }}  {{ item.hour_minute }} <view class="flex-grow"></view> {{ item.remark || '' }}
       </view>
     </view>
   </view>
